@@ -34,7 +34,7 @@ async function showGeojsonEU(url) {
     L.geoJSON(geojson, {
         style: style,
         onEachFeature: onEachFeature
-    }).addTo(map)
+    }).addTo(mapeu)
 
 };
 
@@ -52,6 +52,18 @@ function style(feature){
     };
 }
 
+
+//OnEachFeature Funktion GEOJSON-Objekt (PopUps etc.)
+
+function onEachFeature (feature,layer) {
+
+}
+
+
+
+
+
+
 //GetCOLOR Funktion für Angabe der Farbabstufungen (Definition der Klassengrenzen)
 
 function getColor(a) {
@@ -64,4 +76,7 @@ function getColor(a) {
             "grey";
 }
 
-showGeojsonEU("\Daten_europa.json");  //Funktionsaufruf 
+
+
+
+showGeojsonEU("/data/Daten_europa.json");  //Funktionsaufruf 
