@@ -38,4 +38,30 @@ async function showGeojsonEU(url) {
 
 };
 
+
+//STYLE-Funktion GEOJSON-Objekt (Einfärbung der einzelnen Länderpolygone)
+
+function style(feature){
+
+    return {
+        fillColor: getColor(parseInt(feature.properties.Renewables_and_biofuels)),  //Hier ParseInt da Zahlenwert in JSON als STring gespeichert
+        weight: 2,
+        opacity: 1,
+        color: "white",
+        fillOpacity: 0.7
+    };
+}
+
+//GetCOLOR Funktion für Angabe der Farbabstufungen (Definition der Klassengrenzen)
+
+function getColor(a) {
+    return a <= 20 ? "#d8d7e0":
+            a <= 30 ? "#b2b1c1":
+            a <= 40 ? "#8d8ba4":
+            a <= 50 ? "#6a6887":
+            a <= 60 ? "#47476b":
+            a > 60 ? "#252850":
+            "grey";
+}
+
 showGeojsonEU("\Daten_europa.json");  //Funktionsaufruf 
