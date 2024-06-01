@@ -85,6 +85,8 @@ legend.onAdd = function (mapeu) {
     klassen = [0, 20, 30, 40, 50, 60],   //Definition der Klassenabstufungen
     labels = []
 
+    div.innerHTML += "<b>Anteil erneuerbarer Energien <br> am gesamten <br> Bruttoendenergieverbrauch (%) <br><br></b>"
+
     for (var i = 0; i < klassen.length; i++) {
         div.innerHTML +=
         '<i style="background:' + getColor(klassen[i] +1) + '"></i>' +
