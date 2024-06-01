@@ -61,9 +61,6 @@ function onEachFeature (feature,layer) {
 
 
 
-
-
-
 //GetCOLOR Funktion für Angabe der Farbabstufungen (Definition der Klassengrenzen)
 
 function getColor(a) {
@@ -78,5 +75,31 @@ function getColor(a) {
 
 
 
+//LEGENDE für die thematische Karte 
 
-showGeojsonEU("/data/Daten_europa.json");  //Funktionsaufruf 
+var legend = L.control({position: 'bottomleft'});
+
+legend.onAdd = function (mapeu) {
+    
+    var div = L.DomUtil.create('div', 'info legend')
+    klassen = [0, 20, 30, 40, 50, 60],   //Definition der Klassenabstufungen
+    labels = []
+
+    for (var i = 0; i < klassen.length; i++) {
+        div.innerHTML +=
+        '<i style="background:' + getColor(klassen[i] +1) + '"></i>' +
+        klassen[i] + (klassen[i+1] ? '&ndash;' + klassen[i+1] + '<br>': '+');
+    }
+
+    return div; 
+
+}; 
+
+legend.addTo(mapeu);
+
+
+
+
+//Funktionsaufruf zum Datenabruf
+
+showGeojsonEU("/data/Daten_europa.json");  
