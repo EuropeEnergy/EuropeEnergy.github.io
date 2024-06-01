@@ -77,20 +77,21 @@ function getColor(a) {
 
 //LEGENDE für die thematische Karte 
 
-var legend = L.control({position: 'bottomleft'});
+let legend = L.control({position: 'bottomleft'});
 
 legend.onAdd = function (mapeu) {
     
-    var div = L.DomUtil.create('div', 'info legend')
+    let div = L.DomUtil.create('div', 'info legend')
     klassen = [0, 20, 30, 40, 50, 60],   //Definition der Klassenabstufungen
     labels = []
 
     div.innerHTML += "<b>Anteil erneuerbarer Energien <br> am gesamten <br> Bruttoendenergieverbrauch (%) <br><br></b>"
 
-    for (var i = 0; i < klassen.length; i++) {
+    for (let i = 0; i < klassen.length; i++) {
+        let p = klassen[i+1]-1;
         div.innerHTML +=
         '<i style="background:' + getColor(klassen[i] +1) + '"></i>' +
-        klassen[i] + (klassen[i+1] ? '&ndash;' + klassen[i+1] + '<br>': '+');
+        klassen[i] + (p ? '&ndash;' + p + '<br>': '+');
     }
 
     return div; 
