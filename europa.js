@@ -64,13 +64,14 @@ function onEachFeature (feature,layer) {
 //GetCOLOR Funktion für Angabe der Farbabstufungen (Definition der Klassengrenzen)
 
 function getColor(a) {
-    return a <= 20 ? "#d8d7e0":
-            a <= 30 ? "#b2b1c1":
-            a <= 40 ? "#8d8ba4":
-            a <= 50 ? "#6a6887":
-            a <= 60 ? "#47476b":
-            a > 60 ? "#252850":
-            "#D8DcE4" }
+    return a <= 15 ? "#c6dbef":
+            a <= 20 ? "#9ecae1":
+            a <= 25 ? "#6baed6":
+            a <= 30 ? "#4292c6":
+            a <= 35 ? "#2171b5":
+            a <= 40 ? "#08519c":
+            a > 40 ? "#08306b":
+            "#E8DCCA" }
 
 
 
@@ -81,7 +82,7 @@ let legend = L.control({position: 'bottomleft'});
 legend.onAdd = function (mapeu) {
     
     let div = L.DomUtil.create('div', 'info legend')
-    klassen = [0, 20, 30, 40, 50, 60],   //Definition der Klassenabstufungen
+    klassen = [0, 15, 20, 25, 30, 35, 40],   //Definition der Klassenabstufungen
     labels = []
 
     div.innerHTML += "<b>Anteil erneuerbarer Energien <br> am gesamten <br> Bruttoendenergieverbrauch (%) <br><br></b>"
