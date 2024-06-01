@@ -59,20 +59,22 @@ function onEachFeature (feature,layer) {
 
 }
 
+//DEFINITION DER KLASSEN für GETCOLOR und LEGENDE
+
+klassen = [0, 15, 20, 25, 30, 35, 40];
 
 
 //GetCOLOR Funktion für Angabe der Farbabstufungen (Definition der Klassengrenzen)
 
 function getColor(a) {
-    return a <= 15 ? "#c6dbef":
-            a <= 20 ? "#9ecae1":
-            a <= 25 ? "#6baed6":
-            a <= 30 ? "#4292c6":
-            a <= 35 ? "#2171b5":
-            a <= 40 ? "#08519c":
-            a > 40 ? "#08306b":
+    return a <= klassen[1] ? "#c6dbef":
+            a <= klassen[2] ? "#9ecae1":
+            a <= klassen[3] ? "#6baed6":
+            a <= klassen[4] ? "#4292c6":
+            a <= klassen[5] ? "#2171b5":
+            a <= klassen[6] ? "#08519c":
+            a > klassen[6] ? "#08306b":
             "#E8DCCA" }
-
 
 
 //LEGENDE für die thematische Karte 
@@ -82,7 +84,6 @@ let legend = L.control({position: 'bottomleft'});
 legend.onAdd = function (mapeu) {
     
     let div = L.DomUtil.create('div', 'info legend')
-    klassen = [0, 15, 20, 25, 30, 35, 40],   //Definition der Klassenabstufungen
     labels = []
 
     div.innerHTML += "<b>Anteil erneuerbarer Energien <br> am gesamten <br> Bruttoendenergieverbrauch (%) <br><br></b>"
@@ -94,7 +95,7 @@ legend.onAdd = function (mapeu) {
         klassen[i] + (p ? '&ndash;' + p + '<br>': '+');
     }
 
-    div.innerHTML += '<br><br><i style="background:' + "#D8DcE4" + '"></i>' +
+    div.innerHTML += '<br><br><i style="background:' + "#E8DCCA" + '"></i>' +
     'Europäisches Land, <br> keine Daten verfügbar';
 
     return div; 
