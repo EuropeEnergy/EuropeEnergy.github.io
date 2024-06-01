@@ -1,4 +1,4 @@
-// Innsbruck
+// INNSBRUCK
 let ibk = {
     lat: 47.267222,
     lng: 11.392778
@@ -22,7 +22,9 @@ L.control.scale({
 }).addTo(mapeu);
 
 
+
 //DATENIMPORT GEOJSON EUROPA-DATEN
+
 
 async function showGeojsonEU(url) {
     let response = await fetch(url);
@@ -31,13 +33,13 @@ async function showGeojsonEU(url) {
 
 //ERSTELLUNG LEAFLET GEOJSON OBJEKT
 
+
     L.geoJSON(geojson, {
         style: style,
         onEachFeature: onEachFeature
     }).addTo(mapeu)
 
 };
-
 
 //STYLE-Funktion GEOJSON-Objekt (Einfärbung der einzelnen Länderpolygone)
 
