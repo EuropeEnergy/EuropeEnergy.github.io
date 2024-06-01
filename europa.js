@@ -41,6 +41,26 @@ async function showGeojsonEU(url) {
 
 };
 
+
+
+
+
+
+//Erstellung einer Sidebar für die Karte
+
+let sidebar = L.control.sidebar({
+    autopan: false,       
+    closeButton: true,    
+    container: 'sidebar', 
+    position: 'left',     
+}); 
+
+//mapeu.addControl(sidebar);
+//mapeu.on("click", function(){sidebar.hide()})
+
+
+
+
 //STYLE-Funktion GEOJSON-Objekt (Einfärbung der einzelnen Länderpolygone)
 
 function style(feature){
@@ -55,15 +75,27 @@ function style(feature){
 }
 
 
+
+
+
 //OnEachFeature Funktion GEOJSON-Objekt (PopUps etc.)
 
-function onEachFeature (feature,layer) {
-
+function onEachFeature (feature, layer) {
+layer.on({
+    click: function() {sidebar.toggle()}
+})
+    
 }
+
+
+
 
 //DEFINITION DER KLASSEN für GETCOLOR und LEGENDE
 
 klassen = [0, 15, 20, 25, 30, 35, 40];
+
+
+
 
 
 //GetCOLOR Funktion für Angabe der Farbabstufungen (Definition der Klassengrenzen)
@@ -77,6 +109,10 @@ function getColor(a) {
             a <= klassen[6] ? "#08519c":
             a > klassen[6] ? "#08306b":
             "#E8DCCA" }
+
+
+
+
 
 
 //LEGENDE für die thematische Karte 
