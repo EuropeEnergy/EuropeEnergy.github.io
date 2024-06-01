@@ -48,7 +48,7 @@ function style(feature){
         weight: 2,
         opacity: 1,
         color: "white",
-        fillOpacity: 0.7
+        fillOpacity: 1
     };
 }
 
@@ -70,8 +70,7 @@ function getColor(a) {
             a <= 50 ? "#6a6887":
             a <= 60 ? "#47476b":
             a > 60 ? "#252850":
-            "grey";
-}
+            "#D8DcE4" }
 
 
 
@@ -93,6 +92,9 @@ legend.onAdd = function (mapeu) {
         '<i style="background:' + getColor(klassen[i] +1) + '"></i>' +
         klassen[i] + (p ? '&ndash;' + p + '<br>': '+');
     }
+
+    div.innerHTML += '<br><br><i style="background:' + "#D8DcE4" + '"></i>' +
+    'Europäisches Land, <br> keine Daten verfügbar';
 
     return div; 
 
