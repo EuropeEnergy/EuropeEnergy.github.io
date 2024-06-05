@@ -162,6 +162,7 @@ showGeojsonEU("/data/Daten_europa.json");
 
 //Funktion ClickOneFeature 
 function ClickOnFeature(e){
+
  let diagrammdaten = []
  let tabellenbezeichnung = ['Wasserkraft', 'Wind', 'Geothermie']
  let tabellenwerte = [e.feature.properties.Hydro, e.feature.properties.Wind, e.feature.properties.Geothermal]
@@ -180,15 +181,17 @@ function ClickOnFeature(e){
 
 //Funktion für Erstellung eines Diagramms 
 
-/*
-        google.charts.load('current', {packages: ['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
-        */
-
-
-/*function drawChart() {
+function drawChart(diagrammdaten) {
     let data = new google.visualization.DataTable();
     data.addColumn('string', 'Energietyp')
     data.addDataColumn('number', 'Prozentzahl')
-    data.addRows([])
-}*/
+    data.addRows(diagrammdaten)
+
+    var options = {
+        title: 'Diagramm Test',
+        pieHole: 0.4,
+      };
+
+    var chart = new google.visualization.PieChart(document.getElementById('Diagramm'));
+    chart.draw(data, options);
+}
