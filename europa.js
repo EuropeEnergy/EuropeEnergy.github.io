@@ -86,10 +86,13 @@ function onEachFeature (feature, layer) {
 })*/
 
 layer.bindPopup(
-    `<h4>Land: ${feature.properties.preferred_term}</h4>
+    `<h4>Land (eng): ${feature.properties.preferred_term}</h4>
     <p>Anteil erneuerbarer Energien am gesamten Bruttoendenergieverbrauch: ${feature.properties.Renewables_and_biofuels}`
 )
-    
+
+layer.on({
+    click: ClickOnFeature
+    }); 
 }
 
 
@@ -153,3 +156,30 @@ legend.addTo(mapeu);
 //Funktionsaufruf zum Datenabruf
 
 showGeojsonEU("/data/Daten_europa.json");  
+
+
+
+
+//Funktion ClickOneFeature 
+function ClickOnFeature(e){
+
+}
+
+
+
+
+
+//Funktion für Erstellung eines Diagramms 
+
+/*
+        google.charts.load('current', {packages: ['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        */
+
+
+/*function drawChart() {
+    let data = new google.visualization.DataTable();
+    data.addColumn('string', 'Energietyp')
+    data.addDataColumn('number', 'Prozentzahl')
+    data.addRows([])
+}*/
