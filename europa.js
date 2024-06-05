@@ -53,7 +53,7 @@ let sidebar = L.control.sidebar({
     closeButton: true,    
     container: 'sidebar', 
     position: 'left',     
-}); 
+}) 
 
 //mapeu.addControl(sidebar);
 //mapeu.on("click", function(){sidebar.hide()})
@@ -66,7 +66,7 @@ let sidebar = L.control.sidebar({
 function style(feature){
 
     return {
-        fillColor: getColor(parseInt(feature.properties.Renewables_and_biofuels)),  //Hier ParseInt da Zahlenwert in JSON als STring gespeichert
+        fillColor: getColor(parseInt(feature.properties.Renewables_and_biofuels)),  //Hier ParseInt da Zahlenwert in JSON als String gespeichert
         weight: 2,
         opacity: 1,
         color: "white",
@@ -81,9 +81,14 @@ function style(feature){
 //OnEachFeature Funktion GEOJSON-Objekt (PopUps etc.)
 
 function onEachFeature (feature, layer) {
-layer.on({
-    click: function() {sidebar.toggle()}
-})
+/*layer.on({
+    click: function() {sidebar.addTo(mapeu)}
+})*/
+
+layer.bindPopup(
+    `<h4>Land: ${feature.properties.preferred_term}</h4>
+    <p>Anteil erneuerbarer Energien am gesamten Bruttoendenergieverbrauch: ${feature.properties.Renewables_and_biofuels}`
+)
     
 }
 
