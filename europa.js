@@ -162,6 +162,13 @@ showGeojsonEU("/data/Daten_europa.json");
 
 //Funktion ClickOneFeature 
 function ClickOnFeature(e){
+ let diagrammdaten = []
+ let tabellenbezeichnung = ['Wasserkraft', 'Wind', 'Geothermie']
+ let tabellenwerte = [e.feature.properties.Hydro, e.feature.properties.Wind, e.feature.properties.Geothermal]
+ diagrammdaten[0] = [tabellenbezeichnung[0], tabellenwerte[0]]
+ diagrammdaten[1] = [tabellenbezeichnung[1], tabellenwerte[1]]
+ diagrammdaten[2] = [tabellenbezeichnung[2], tabellenwerte[2]]
+
 
 }
 
