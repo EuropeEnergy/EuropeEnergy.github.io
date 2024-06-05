@@ -169,7 +169,9 @@ function ClickOnFeature(e){
  diagrammdaten[1] = [tabellenbezeichnung[1], tabellenwerte[1]]
  diagrammdaten[2] = [tabellenbezeichnung[2], tabellenwerte[2]]
 
-
+ google.charts.load('current', {packages: ['corechart']});
+ google.charts.setOnLoadCallback(function() {
+    drawChart(diagrammdaten)});
 }
 
 
