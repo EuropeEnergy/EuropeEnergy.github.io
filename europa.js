@@ -44,8 +44,6 @@ async function showGeojsonEU(url) {
 
 
 
-
-
 //Erstellung einer Sidebar für die Karte
 
 let sidebar = L.control.sidebar({
@@ -57,6 +55,8 @@ let sidebar = L.control.sidebar({
 
 //mapeu.addControl(sidebar);
 //mapeu.on("click", function(){sidebar.hide()})
+
+
 
 
 
@@ -87,13 +87,14 @@ function onEachFeature (feature, layer) {
 
 layer.bindPopup(
     `<h4>Land (eng): ${feature.properties.preferred_term}</h4>
-    <p>Anteil erneuerbarer Energien am gesamten Bruttoendenergieverbrauch: ${feature.properties.Renewables_and_biofuels}`
+    <p>Anteil erneuerbarer Energien am gesamten Bruttoendenergieverbrauch (%): ${feature.properties.Renewables_and_biofuels}`
 )
 
 layer.on({
     click: ClickOnFeature
     }); 
 }
+
 
 
 
