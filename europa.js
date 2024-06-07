@@ -156,7 +156,7 @@ legend.addTo(mapeu);
 
 //Funktionsaufruf zum Datenabruf
 
-showGeojsonEU("/data/Daten_europa.json");  
+showGeojsonEU("/data/Daten_Europa.geojson");  
 
 
 
