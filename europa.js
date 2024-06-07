@@ -162,6 +162,7 @@ showGeojsonEU("/data/Daten_Europa.geojson");
 
 
 
+
 //Funktion ClickOnFeature für einzelne Click Events für die Diagrammerstellung
 function ClickOnFeature(e) {
 
@@ -209,7 +210,10 @@ function ClickOnFeature(e) {
 
 
 
-//Funktion für Erstellung eines Diagramms 
+
+
+
+//Funktion für Erstellung eines Google-Chart Diagramms 
 
 function drawChart(diagrammdaten) {
     let data = new google.visualization.DataTable();
@@ -218,8 +222,9 @@ function drawChart(diagrammdaten) {
     data.addRows(diagrammdaten)
 
     var options = {
-        title: 'Diagramm Test',
+        title: 'Kategorieanteil an Erneuerbarer Energie (%)',
         pieHole: 0.4,
+        slices: {0: {color: '#CD9B1D'}, 1:{color: '#5CACEE'}, 2:{color: '#66CDAA'}, 3:{color: '#FF6347'}, 4:{color: '#EEEE00'}, 5:{color: '#AB82FF'}, 6:{color: '#528B8B'}},
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('Diagramm'));
