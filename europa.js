@@ -38,24 +38,28 @@ async function showGeojsonEU(url) {
         style: style,
         onEachFeature: onEachFeature
     }).addTo(mapeu)
-
 };
 
 
 
 
 //Erstellung einer Sidebar für die Karte
+/*
+let inhalt_sidebar = `
+<div id="sidebar"><h1>SIDEBAR</h1></div>`;
+
 
 let sidebar = L.control.sidebar({
-    autopan: false,
+    autopane: false,
     closeButton: true,
     container: 'sidebar',
-    position: 'left',
-})
+    position: 'right',
+}).addTo(mapeu)
 
+sidebar.getContainer().innerHTML = inhalt_sidebar;
+*/
 //mapeu.addControl(sidebar);
 //mapeu.on("click", function(){sidebar.hide()})
-
 
 
 
@@ -89,7 +93,6 @@ function onEachFeature(feature, layer) {
         `<h4>Land (eng): ${feature.properties.preferred_term}</h4>
     <p>Anteil erneuerbarer Energien am gesamten Bruttoendenergieverbrauch (%): ${feature.properties.Renewables_and_biofuels}`
     )
-
     layer.on({
         click: ClickOnFeature
     });
@@ -201,7 +204,7 @@ function ClickOnFeature(e) {
         diagrammdaten[a] = [tabellenbezeichnung[a], tabellenwerte[a]]
     }
 
-
+    //sidebar.open('sidebar')
     google.charts.load('current', { packages: ['corechart'] });
     google.charts.setOnLoadCallback(function () {
         drawChart(diagrammdaten)
@@ -230,3 +233,10 @@ function drawChart(diagrammdaten) {
     var chart = new google.visualization.PieChart(document.getElementById('Diagramm'));
     chart.draw(data, options);
 }
+
+
+
+
+
+
+//
