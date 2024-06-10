@@ -9,6 +9,9 @@ html{
   height:100%
 }
 
+main {
+  margin: 0;
+}
 
 body{
   height: 100%;
@@ -16,6 +19,38 @@ body{
   background-size:cover;
   background-repeat: no-repeat;
   background-attachment:fixed;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#überschrift-Container {
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  width: 100%
+}
+
+
+
+img {
+width: 100%;
+height: auto;
+left: 0px;
+}
+
+#text-overlay {
+  position: absolute;
+  top: 30%;
+  left: 1%;
+  color: white;
+  text-align: left;
+  font-weight: bold;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.5)
+}
+
+
+
+section {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 /*Navigationsleiste*/
