@@ -130,13 +130,13 @@ async function showGeojsonwindOffshore(url) {
 
     L.geoJSON(geojson, {
         style: function (feature) {
-            return {
-                color: "#F012BE",
-                weight: 2,
-                opacity: 1,
-                fillOpacity: 1
-
-            };
+            return L.marker(latlng, {
+                icon: L.icon({
+                  iconUrl: "/images/windturbine_offshore.png",
+                  iconAnchor: [16, 37],
+                  popupAnchor: [0, -37]
+                })
+              });
         },
 
         onEachFeature: function (feature, layer) {
