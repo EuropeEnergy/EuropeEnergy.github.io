@@ -177,7 +177,7 @@ showGeojsonEU("/data/Daten_Europa.geojson");
 function ClickOnFeature(e) {
 
     //Öffnen der Sidebar
-    sidebar.setContent(`<b>Name des Landes: ${e.target.feature.properties.preferred_term} <br><br> <div id="Diagramm"></div> <br><br> <button id="b1">close</button>`).show();
+    sidebar.setContent(`<button id="b1"><b>X</b></button> <br> <b>Name des Landes: ${e.target.feature.properties.preferred_term} <br><br> <div id="Diagramm"></div> <br><br>`).show();
     document.getElementById('b1').addEventListener('click', function() {
         sidebar.hide();
     })
@@ -244,8 +244,6 @@ function drawChart(diagrammdaten) {
     var chart = new google.visualization.PieChart(document.getElementById('Diagramm'));
     chart.draw(data, options);
 }
-
-
 
 
 
