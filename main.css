@@ -215,11 +215,12 @@ nav ul li ul li a:hover {
   height: 85vh;
   border: 1px solid grey;
   z-index: 1;
+  padding-top: 200px;
 }
 
 #Diagramm {
-  width: 100%;
-  background-color:rgb(179, 202, 179); }
+  background-color:rgb(179, 202, 179); 
+  float: left;}
 
 #sidebar {
   background-color:rgb(179, 202, 179);
