@@ -158,6 +158,38 @@ async function showGeojsonwater(url) {
 
     let response = await fetch(url);
     let geojson = await response.json();
+    //console.log(geojson);
+
+    L.geoJSON(geojson, {
+        style: function (feature) {
+            return {
+                color: "#F012BE",
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 1
+
+            };
+        },
+
+        onEachFeature: function (feature, layer) {
+            //console.log(feature);
+            layer.bindPopup(`
+            <h4> Wasserkraft </h4>
+            <p> System: ${feature.properties.SYS}
+            <p> Kapazität: ${feature.properties.CAP} kW
+            `);
+        }
+    }).addTo(themaLayer.water)
+};
+
+showGeojsonwater("/data/Wasserkraft_angepasst.geojson");
+
+// Biomasse
+
+async function showGeojsonbio(url) {
+
+    let response = await fetch(url);
+    let geojson = await response.json();
     console.log(geojson);
 
     L.geoJSON(geojson, {
@@ -176,10 +208,11 @@ async function showGeojsonwater(url) {
             layer.bindPopup(`
             <h4> Wasserkraft </h4>
             <p> System: ${feature.properties.SYS}
+            <p> Typ: ${feature.properties.TYP}
             <p> Kapazität: ${feature.properties.CAP} kW
             `);
         }
-    }).addTo(themaLayer.water)
+    }).addTo(themaLayer.bio)
 };
 
-showGeojsonwater("/data/Wasserkraft_angepasst.geojson");
+showGeojsonbio("/data/bioenergy_angepasst.geojson");
