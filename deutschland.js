@@ -97,16 +97,16 @@ async function showGeojsonwindOnshore(url) {
     //console.log(geojson);
 
     L.geoJSON(geojson, {
-        style: function (feature) {
-            return {
-                color: "#F012BE",
-                weight: 2,
-                opacity: 1,
-                fillOpacity: 1
-
-            };
-        },
-
+        pointToLayer: function (feature, latlng) {
+        let windonshoreicon = "images/windturbine_onshore.png";
+            return L.marker(latlng, {
+                icon: L.icon({
+                  iconUrl: windonshoreicon,
+                  iconAnchor: [16, 37],
+                  popupAnchor: [0, -37]
+                })
+              });
+            },
         onEachFeature: function (feature, layer) {
             //console.log(feature);
             layer.bindPopup(`
@@ -129,10 +129,11 @@ async function showGeojsonwindOffshore(url) {
     //console.log(geojson);
 
     L.geoJSON(geojson, {
-        style: function (feature) {
+        pointToLayer: function (feature, latlng) {
+            let windoffshoreicon = "images/windturbine_offshore.png";
             return L.marker(latlng, {
                 icon: L.icon({
-                  iconUrl: "/images/windturbine_offshore.png",
+                  iconUrl: windoffshoreicon,
                   iconAnchor: [16, 37],
                   popupAnchor: [0, -37]
                 })
