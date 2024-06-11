@@ -62,6 +62,13 @@ sidebar.getContainer().innerHTML = inhalt_sidebar;
 //mapeu.on("click", function(){sidebar.hide()})
 
 
+var sidebar = L.control.sidebar('sidebar', {
+    position: 'right'
+});
+
+mapeu.addControl(sidebar);
+sidebar.setContent('test <b>test</b> test');
+
 
 //Erstellung eines Musters
 let stripePattern = new L.StripePattern({
@@ -186,7 +193,7 @@ showGeojsonEU("/data/Daten_Europa.geojson");
 function ClickOnFeature(e) {
 
     console.log(e)
-
+    sidebar.show();
 
     //Variablen um Werte aus GeoJSON abzugreifen (bzw. aus dem Feature, welches angeklickt wurde) - da String, Umwandlung in Nummer notwendig!
     let Biomasse = parseFloat((e.target.feature.properties.Sustainable_primary_solid_biofuels).replace(',', '.')) 
