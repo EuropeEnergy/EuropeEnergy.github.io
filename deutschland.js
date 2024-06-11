@@ -11,7 +11,7 @@ let BBTor = {
 let mapde = L.map("mapde").setView([BBTor.lat, BBTor.lng], 15);
 
 // BasemapAT Layer mit Leaflet provider plugin als startLayer Variable
-let startLayer = L.tileLayer.provider("OpenStreetMap.Mapnik");
+let startLayer = L.tileLayer.provider("Esri.WorldTopoMap");
 startLayer.addTo(mapde);
 
 // Maßstab
@@ -28,7 +28,9 @@ let themaLayer = {
     windOnshore: L.markerClusterGroup({
         disableClusteringAtZoom: 17
     }),
-    windOffshore: L.featureGroup(),
+    windOffshore: L.markerClusterGroup({
+        disableClusteringAtZoom: 17
+    }),
     water: L.featureGroup(),
     bio: L.featureGroup()
 
@@ -36,6 +38,8 @@ let themaLayer = {
 
 // Hintergrundlayer
 L.control.layers({
+    "Basemap Deutschland Grau": L.tileLayer.provider("BaseMapDE.Grey"),
+    "Topo Grey": L.tileLayer.provider("TopPlusOpen.Grey"),
     "Openstreetmap": L.tileLayer.provider("OpenStreetMap.Mapnik"),
     "Esri WorldTopoMap": L.tileLayer.provider("Esri.WorldTopoMap"),
     "Esri WorldImagery": L.tileLayer.provider("Esri.WorldImagery")
@@ -113,3 +117,35 @@ async function showGeojsonwindOnshore(url) {
 };
 
 showGeojsonwindOnshore("/data/Wind-onshore_angepasst.geojson");
+
+// Windenenergie Offshore
+
+async function showGeojsonwindffshore(url) {
+
+    let response = await fetch(url);
+    let geojson = await response.json();
+    console.log(geojson);
+
+    L.geoJSON(geojson, {
+        style: function (feature) {
+            return {
+                color: "#F012BE",
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 1
+
+            };
+        },
+
+        onEachFeature: function (feature, layer) {
+            console.log(feature);
+            layer.bindPopup(`
+            <h4> Windenergieanlage Offshore </h4>
+            <p> System: ${feature.properties.SYS}
+            <p> Kapazität: ${feature.properties.CAP} kW
+            `);
+        }
+    }).addTo(themaLayer.windOffshore)
+};
+
+showGeojsonwindOnshore("/data/wind_offshore_angepasst.geojson");
