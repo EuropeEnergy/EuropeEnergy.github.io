@@ -1,6 +1,6 @@
-/* Vienna Sightseeing Beispiel */
+/* Karte Deutschland */
 
-// Stephansdom Objekt
+// Brandenburger Tor
 let BBTor = {
     lat: 52.516389,
     lng: 13.377778,
@@ -15,27 +15,12 @@ let themaLayer = {
     solar: L.featureGroup().addTo(mapde),
     windOnshore: L.featureGroup().addTo(mapde),
     windOffshore: L.featureGroup().addTo(mapde),
-    water: L.featureGroup().addTo(mapde),
-    bio: L.markerClusterGroup({
-        disableClusteringAtZoom: 17
-    }).addTo(mapde),
+    water: L.featureGroup().addTo(mapde)
 
 };
 
-// Maßstab
-L.control
-    .scale({
-        imperial: false,
-    })
-    .addTo(mapde);
-
-// Fullscreen
-L.control
-    .fullscreen()
-    .addTo(mapde);
-
 // Hintergrundlayer
-let layerControl = L.control.layers({
+L.control.layers({
     "Openstreetmap": L.tileLayer.provider("OpenStreetMap.Mapnik"),
     "Esri WorldTopoMap": L.tileLayer.provider("Esri.WorldTopoMap"),
     "Esri WorldImagery": L.tileLayer.provider("Esri.WorldImagery").addTo(mapde)
@@ -46,23 +31,17 @@ let layerControl = L.control.layers({
     "Wasserkraft": themaLayer.water,
     "Biomasse": themaLayer.bio
 
-  })
-  .addTo(mapde);
+}).addTo(mapde);
 
 
+// Maßstab
+L.control.scale({
+    imperial: false,
+}).addTo(mapde);
+
+// Fullscreen
+L.control.fullscreen().addTo(mapde);
 
 // Import GeoJson Daten Deutschland
-
-async function showGeojsonsolar(url) {
-    let response = await fetch(url);
-    let geojson = await response.json();
-
-    L.geoJSON(geojson, {
-        style: style,
-        onEachFeature: onEachFeature
-    }).addTo(mapde)
-};
-
-showGeojsonsolar("/data/solar_angepasst.geojson");
 
 
