@@ -62,31 +62,46 @@ sidebar.getContainer().innerHTML = inhalt_sidebar;
 //mapeu.on("click", function(){sidebar.hide()})
 
 
+var sidebar = L.control.sidebar('sidebar', {
+    position: 'right'
+});
+
+mapeu.addControl(sidebar);
+sidebar.setContent('test <b>test</b> test');
+
 
 //Erstellung eines Musters
-/*let pattern = new L.Pattern({
-    width: 8,
-    height:8,
-    patternUnits: 'userSpaceOnUse'
+let stripePattern = new L.StripePattern({
+    weight: 5,
+    spaceWeight: 4,
+    color: "black",
+    spaceColor: "#8A2BE2",
+    angle: 45,
+    opacity: 1,
 });
-*/
+stripePattern.addTo(mapeu);
 
 
 
 //STYLE-Funktion GEOJSON-Objekt (Einfärbung der einzelnen Länderpolygone)
 
 function style(feature) {
+if (feature.properties.Renewables_and_biofuels == null) {
+    return {
+        fillPattern: stripePattern, 
+        weight: 2, 
+        color: "white"
+    };} 
 
+else {
     return {
         fillColor: getColor(parseInt(feature.properties.Renewables_and_biofuels)),  //Hier ParseInt da Zahlenwert in JSON als String gespeichert
         weight: 2,
         opacity: 1,
         color: "white",
         fillOpacity: 1
-    };
+    };}
 }
-
-
 
 
 
@@ -178,7 +193,7 @@ showGeojsonEU("/data/Daten_Europa.geojson");
 function ClickOnFeature(e) {
 
     console.log(e)
-
+    sidebar.show();
 
     //Variablen um Werte aus GeoJSON abzugreifen (bzw. aus dem Feature, welches angeklickt wurde) - da String, Umwandlung in Nummer notwendig!
     let Biomasse = parseFloat((e.target.feature.properties.Sustainable_primary_solid_biofuels).replace(',', '.')) 
