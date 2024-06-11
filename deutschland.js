@@ -25,7 +25,9 @@ L.control.fullscreen().addTo(mapde);
 // Layerauswahl Typ Energie
 let themaLayer = {
     solar: L.featureGroup(),
-    windOnshore: L.featureGroup(),
+    windOnshore: L.markerClusterGroup({
+        disableClusteringAtZoom: 17
+    }),
     windOffshore: L.featureGroup(),
     water: L.featureGroup(),
     bio: L.featureGroup()
@@ -48,14 +50,45 @@ L.control.layers({
 
 // Import GeoJson Daten Deutschland
 
+// Freiflächen Solar
+
 async function showGeojsonsolar(url) {
 
     let response = await fetch(url);
     let geojson = await response.json();
+    //console.log(geojson);
+
+    L.geoJSON(geojson, {
+        style: function (feature) {
+            return {
+                color: "#F012BE",
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 1
+
+            };
+        },
+
+        onEachFeature: function (feature, layer) {
+            //console.log(feature);
+            layer.bindPopup(`
+            <h4> Freiflächenanlage PV </h4>
+            <p> Typ: ${feature.properties.TYP}
+            <p> Kapazität: ${feature.properties.CAP} kW
+            `);
+        }
+    }).addTo(themaLayer.solar)
+};
+
+showGeojsonsolar("/data/solar_angepasst.geojson");
+
+// Windenenergie Onshore
+
+async function showGeojsonwindOnshore(url) {
+
+    let response = await fetch(url);
+    let geojson = await response.json();
     console.log(geojson);
-
-
-    //ERSTELLUNG LEAFLET GEOJSON OBJEKT
 
     L.geoJSON(geojson, {
         style: function (feature) {
@@ -71,12 +104,12 @@ async function showGeojsonsolar(url) {
         onEachFeature: function (feature, layer) {
             console.log(feature);
             layer.bindPopup(`
-            <h4> Freiflächenanlage PV </h4>
-            <p> Typ: ${feature.properties.TYP}
-            <p> Kapazität: ${feature.properties.CAP}
+            <h4> Windenergieanlage Onshore </h4>
+            <p> System: ${feature.properties.SYS}
+            <p> Kapazität: ${feature.properties.CAP} kW
             `);
         }
-    }).addTo(themaLayer.solar)
+    }).addTo(themaLayer.windOnshore)
 };
 
-showGeojsonsolar("/data/solar_angepasst.geojson");
+showGeojsonwindOnshore("/data/Wind-onshore_angepasst.geojson");
