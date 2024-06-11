@@ -11,7 +11,7 @@ let BBTor = {
 let mapde = L.map("mapde").setView([BBTor.lat, BBTor.lng], 15);
 
 // BasemapAT Layer mit Leaflet provider plugin als startLayer Variable
-let startLayer = L.tileLayer.provider("OpenStreetMap.Mapnik");
+let startLayer = L.tileLayer.provider("Esri.WorldTopoMap");
 startLayer.addTo(mapde);
 
 // Maßstab
@@ -25,10 +25,18 @@ L.control.fullscreen().addTo(mapde);
 // Layerauswahl Typ Energie
 let themaLayer = {
     solar: L.featureGroup(),
-    windOnshore: L.featureGroup(),
-    windOffshore: L.featureGroup(),
-    water: L.featureGroup(),
-    bio: L.featureGroup()
+    windOnshore: L.markerClusterGroup({
+        disableClusteringAtZoom: 17
+    }),
+    windOffshore: L.markerClusterGroup({
+        disableClusteringAtZoom: 17
+    }),
+    water: L.markerClusterGroup({
+        disableClusteringAtZoom: 17
+    }),
+    bio: L.markerClusterGroup({
+        disableClusteringAtZoom: 17
+    })
 
 };
 
@@ -48,14 +56,109 @@ L.control.layers({
 
 // Import GeoJson Daten Deutschland
 
+// Freiflächen Solar
+
 async function showGeojsonsolar(url) {
 
     let response = await fetch(url);
     let geojson = await response.json();
+    //console.log(geojson);
+
+    L.geoJSON(geojson, {
+        style: function (feature) {
+            return {
+                color: "#F012BE",
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 1
+
+            };
+        },
+
+        onEachFeature: function (feature, layer) {
+            //console.log(feature);
+            layer.bindPopup(`
+            <h4> Freiflächenanlage PV </h4>
+            <p> Typ: ${feature.properties.TYP}
+            <p> Kapazität: ${feature.properties.CAP} kW
+            `);
+        }
+    }).addTo(themaLayer.solar)
+};
+
+showGeojsonsolar("/data/solar_angepasst.geojson");
+
+// Windenenergie Onshore
+
+async function showGeojsonwindOnshore(url) {
+
+    let response = await fetch(url);
+    let geojson = await response.json();
+    //console.log(geojson);
+
+    L.geoJSON(geojson, {
+        style: function (feature) {
+            return {
+                color: "#F012BE",
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 1
+
+            };
+        },
+
+        onEachFeature: function (feature, layer) {
+            //console.log(feature);
+            layer.bindPopup(`
+            <h4> Windenergieanlage Onshore </h4>
+            <p> System: ${feature.properties.SYS}
+            <p> Kapazität: ${feature.properties.CAP} kW
+            `);
+        }
+    }).addTo(themaLayer.windOnshore)
+};
+
+showGeojsonwindOnshore("/data/Wind-onshore_angepasst.geojson");
+
+// Windenenergie Offshore
+
+async function showGeojsonwindOffshore(url) {
+
+    let response = await fetch(url);
+    let geojson = await response.json();
+    //console.log(geojson);
+
+    L.geoJSON(geojson, {
+        style: function (feature) {
+            return {
+                color: "#F012BE",
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 1
+
+            };
+        },
+
+        onEachFeature: function (feature, layer) {
+            //console.log(feature);
+            layer.bindPopup(`
+            <h4> Windenergieanlage Offshore </h4>
+            <p> System: ${feature.properties.SYS}
+            <p> Kapazität: ${feature.properties.CAP} kW
+            `);
+        }
+    }).addTo(themaLayer.windOffshore)
+};
+
+showGeojsonwindOffshore("/data/wind_offsore_angepasst.geojson");
+
+// Wasserkraft
+
+async function showGeojsonwater(url) {
+
+    let response = await fetch(url);
+    let geojson = await response.json();
     console.log(geojson);
-
-
-    //ERSTELLUNG LEAFLET GEOJSON OBJEKT
 
     L.geoJSON(geojson, {
         style: function (feature) {
@@ -71,12 +174,12 @@ async function showGeojsonsolar(url) {
         onEachFeature: function (feature, layer) {
             console.log(feature);
             layer.bindPopup(`
-            <h4> Freiflächenanlage PV </h4>
-            <p> Typ: ${feature.properties.TYP}
-            <p> Kapazität: ${feature.properties.CAP}
+            <h4> Wasserkraft </h4>
+            <p> System: ${feature.properties.SYS}
+            <p> Kapazität: ${feature.properties.CAP} kW
             `);
         }
-    }).addTo(themaLayer.solar)
+    }).addTo(themaLayer.water)
 };
 
-showGeojsonsolar("/data/solar_angepasst.geojson");
+showGeojsonwater("/data/Wasserkraft_angepasst.geojson");
