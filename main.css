@@ -160,6 +160,10 @@ nav ul li ul li a:hover {
   height: 50vh;
 }
 
+#sidebar {
+  z-index: 2000;
+}
+
 /*STYLING LEGENDE KARTE EUROPA*/
 
 .info {

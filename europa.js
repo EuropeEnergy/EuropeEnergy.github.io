@@ -44,26 +44,10 @@ async function showGeojsonEU(url) {
 
 
 //Erstellung einer Sidebar für die Karte
-/*
-let inhalt_sidebar = `
-<div id="sidebar"><h1>SIDEBAR</h1></div>`;
-
-
-let sidebar = L.control.sidebar({
-    autopane: false,
-    closeButton: true,
-    container: 'sidebar',
-    position: 'right',
-}).addTo(mapeu)
-
-sidebar.getContainer().innerHTML = inhalt_sidebar;
-*/
-//mapeu.addControl(sidebar);
-//mapeu.on("click", function(){sidebar.hide()})
-
 
 var sidebar = L.control.sidebar('sidebar', {
-    position: 'right'
+    position: 'right',
+    closeButton: true,
 });
 
 mapeu.addControl(sidebar);
@@ -192,8 +176,12 @@ showGeojsonEU("/data/Daten_Europa.geojson");
 //Funktion ClickOnFeature für einzelne Click Events für die Diagrammerstellung
 function ClickOnFeature(e) {
 
-    console.log(e)
-    sidebar.setContent(``).show();
+    //Öffnen der Sidebar
+    sidebar.setContent(`<b>Name des Landes: ${e.target.feature.properties.preferred_term} <br><br> <div id="Diagramm"></div> <br><br> <button id="b1">close</button>`).show();
+    document.getElementById('b1').addEventListener('click', function() {
+        sidebar.hide();
+    })
+    
 
     //Variablen um Werte aus GeoJSON abzugreifen (bzw. aus dem Feature, welches angeklickt wurde) - da String, Umwandlung in Nummer notwendig!
     let Biomasse = parseFloat((e.target.feature.properties.Sustainable_primary_solid_biofuels).replace(',', '.')) 
@@ -256,7 +244,6 @@ function drawChart(diagrammdaten) {
     var chart = new google.visualization.PieChart(document.getElementById('Diagramm'));
     chart.draw(data, options);
 }
-
 
 
 
