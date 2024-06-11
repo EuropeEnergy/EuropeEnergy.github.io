@@ -40,6 +40,22 @@ img {
   left: 0px;
 }
 
+#Erneuerbare_Energien {
+  display: grid;
+  grid-template-columns: 2;
+}
+
+.text {
+  grid-column: 1;
+}
+
+.image {
+  grid-column: 2;
+  width: 30%;
+  margin-left: 70%;
+  margin-top: -300px;
+}
+
 #text-overlay {
   position: absolute;
   top: 30%;
@@ -49,8 +65,6 @@ img {
   font-weight: bold;
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5)
 }
-
-
 
 section {
   padding-top: 20px;
