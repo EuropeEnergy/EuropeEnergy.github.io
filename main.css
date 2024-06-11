@@ -47,7 +47,6 @@ img {
 }
 
 
-
 section {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -57,9 +56,10 @@ section {
 nav {
   width: 100%;
   height: 85px;
-  background-color: white;
+  background-color: rgba(243, 243, 243);
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.11);
   position: fixed;
+  z-index: 5;
 }
 
 /*Liste der Navigationsleiste*/
@@ -129,12 +129,15 @@ nav ul li ul li a:hover {
   width: 100%;
   height: 85vh;
   border: 1px solid gray;
+  position: relative;
+  z-index: 1;
 }
 
 #mapde {
   width: 100%;
   height: 85vh;
   border: 1px solid grey;
+  z-index:1;
 }
 
 #Diagramm {

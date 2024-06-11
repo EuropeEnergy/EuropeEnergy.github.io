@@ -63,6 +63,14 @@ sidebar.getContainer().innerHTML = inhalt_sidebar;
 
 
 
+//Erstellung eines Musters
+/*let pattern = new L.Pattern({
+    width: 8,
+    height:8,
+    patternUnits: 'userSpaceOnUse'
+});
+*/
+
 
 
 //STYLE-Funktion GEOJSON-Objekt (Einfärbung der einzelnen Länderpolygone)
