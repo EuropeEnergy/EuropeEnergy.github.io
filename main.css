@@ -42,19 +42,77 @@ img {
 
 #Erneuerbare_Energien {
   display: grid;
-  grid-template-columns: 65% 35%;
+  grid-template-columns: 60% 40%;
 }
 
-.text {
+.text_wasserkraft {
   grid-column: 1;
+  grid-row: 1;
   padding-right: 20px;
   padding-bottom: 30px;
 }
 
-.image {
+.text_windkraft {
+  grid-column: 1;
+  grid-row: 2;
+  padding-right: 20px;
+  padding-bottom: 30px;
+}
+
+.text_sonnenenergie {
+  grid-column: 1;
+  grid-row: 3;
+  padding-right: 20px;
+  padding-bottom: 30px;
+}
+
+.text_biomasse {
+  grid-column: 1;
+  grid-row: 4;
+  padding-right: 20px;
+  padding-bottom: 30px;
+}
+
+.text_geothermie {
+  grid-column: 1;
+  grid-row: 5;
+  padding-right: 20px;
+  padding-bottom: 30px;
+}
+
+.image_wasserkraft {
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+  margin: auto;
+}
+
+.image_windkraft {
+  grid-column: 2;
+  grid-row: 2;
+  width: 100%;
+  margin: auto;
+}
+
+.image_sonnenenergie {
   grid-column: 2;
   grid-row: 3;
   width: 100%;
+  margin: auto;
+}
+
+.image_biomasse {
+  grid-column: 2;
+  grid-row: 4;
+  width: 100%;
+  margin: auto;
+}
+
+.image_geothermie {
+  grid-column: 2;
+  grid-row: 5;
+  width: 100%;
+  margin: auto;
 }
 
 #text-overlay {
