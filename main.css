@@ -22,6 +22,10 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+footer {
+  background-color: grey;
+}
+
 /*article einrücken*/
 article {
   margin-left: 60px;
