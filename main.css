@@ -24,8 +24,8 @@ body {
 
 /*article einrücken*/
 article {
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-left: 60px;
+  margin-right: 60px;
 }
 
 #überschrift-Container {
@@ -42,18 +42,19 @@ img {
 
 #Erneuerbare_Energien {
   display: grid;
-  grid-template-columns: 2;
+  grid-template-columns: 65% 35%;
 }
 
 .text {
   grid-column: 1;
+  padding-right: 20px;
+  padding-bottom: 30px;
 }
 
 .image {
   grid-column: 2;
-  width: 30%;
-  margin-left: 70%;
-  margin-top: -300px;
+  grid-row: 3;
+  width: 100%;
 }
 
 #text-overlay {
