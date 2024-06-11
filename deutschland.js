@@ -10,29 +10,9 @@ let BBTor = {
 // Karte initialisieren
 let mapde = L.map("mapde").setView([BBTor.lat, BBTor.lng], 15);
 
-// Layerauswahl Typ Energie
-let themaLayer = {
-    solar: L.featureGroup().addTo(mapde),
-    windOnshore: L.featureGroup().addTo(mapde),
-    windOffshore: L.featureGroup().addTo(mapde),
-    water: L.featureGroup().addTo(mapde)
-
-};
-
-// Hintergrundlayer
-L.control.layers({
-    "Openstreetmap": L.tileLayer.provider("OpenStreetMap.Mapnik"),
-    "Esri WorldTopoMap": L.tileLayer.provider("Esri.WorldTopoMap"),
-    "Esri WorldImagery": L.tileLayer.provider("Esri.WorldImagery").addTo(mapde)
-}, {
-    "Solarenergie": themaLayer.solar,
-    "Windenergie Onshore": themaLayer.windOnshore,
-    "Windenergie Offshore": themaLayer.windOffshore,
-    "Wasserkraft": themaLayer.water,
-    "Biomasse": themaLayer.bio
-
-}).addTo(mapde);
-
+// BasemapAT Layer mit Leaflet provider plugin als startLayer Variable
+let startLayer = L.tileLayer.provider("OpenStreetMap.Mapnik");
+startLayer.addTo(mapde);
 
 // Maßstab
 L.control.scale({
@@ -42,6 +22,61 @@ L.control.scale({
 // Fullscreen
 L.control.fullscreen().addTo(mapde);
 
+// Layerauswahl Typ Energie
+let themaLayer = {
+    solar: L.featureGroup(),
+    windOnshore: L.featureGroup(),
+    windOffshore: L.featureGroup(),
+    water: L.featureGroup(),
+    bio: L.featureGroup()
+
+};
+
+// Hintergrundlayer
+L.control.layers({
+    "Openstreetmap": L.tileLayer.provider("OpenStreetMap.Mapnik"),
+    "Esri WorldTopoMap": L.tileLayer.provider("Esri.WorldTopoMap"),
+    "Esri WorldImagery": L.tileLayer.provider("Esri.WorldImagery")
+}, {
+    "Solarenergie": themaLayer.solar,
+    "Windenergie Onshore": themaLayer.windOnshore,
+    "Windenergie Offshore": themaLayer.windOffshore,
+    "Wasserkraft": themaLayer.water,
+    "Biomasse": themaLayer.bio
+
+}).addTo(mapde);
+
 // Import GeoJson Daten Deutschland
 
+async function showGeojsonsolar(url) {
 
+    let response = await fetch(url);
+    let geojson = await response.json();
+    console.log(geojson);
+
+
+    //ERSTELLUNG LEAFLET GEOJSON OBJEKT
+
+    L.geoJSON(geojson, {
+        style: function (feature) {
+            return {
+                color: "#F012BE",
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 1
+
+            };
+        },
+
+        onEachFeature: function (feature, layer) {
+            console.log(feature);
+            layer.bindPopup(`
+            <h4> Freiflächenanlage PV </h4>
+            <p> Typ: ${feature.properties.TYP}
+            <p> Kapazität: ${feature.properties.CAP}
+            `);
+        }
+    }).addTo(themaLayer.solar)
+};
+
+showGeojsonsolar("/data/solar_angepasst.geojson");
