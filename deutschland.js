@@ -11,7 +11,7 @@ let BBTor = {
 let mapde = L.map("mapde").setView([BBTor.lat, BBTor.lng], 15);
 
 // BasemapAT Layer mit Leaflet provider plugin als startLayer Variable
-let startLayer = L.tileLayer.provider("OpenStreetMap.Mapnik");
+let startLayer = L.tileLayer.provider("Esri.WorldTopoMap");
 startLayer.addTo(mapde);
 
 // Maßstab
@@ -28,9 +28,15 @@ let themaLayer = {
     windOnshore: L.markerClusterGroup({
         disableClusteringAtZoom: 17
     }),
-    windOffshore: L.featureGroup(),
-    water: L.featureGroup(),
-    bio: L.featureGroup()
+    windOffshore: L.markerClusterGroup({
+        disableClusteringAtZoom: 17
+    }),
+    water: L.markerClusterGroup({
+        disableClusteringAtZoom: 17
+    }),
+    bio: L.markerClusterGroup({
+        disableClusteringAtZoom: 17
+    })
 
 };
 
@@ -88,6 +94,70 @@ async function showGeojsonwindOnshore(url) {
 
     let response = await fetch(url);
     let geojson = await response.json();
+    //console.log(geojson);
+
+    L.geoJSON(geojson, {
+        style: function (feature) {
+            return {
+                color: "#F012BE",
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 1
+
+            };
+        },
+
+        onEachFeature: function (feature, layer) {
+            //console.log(feature);
+            layer.bindPopup(`
+            <h4> Windenergieanlage Onshore </h4>
+            <p> System: ${feature.properties.SYS}
+            <p> Kapazität: ${feature.properties.CAP} kW
+            `);
+        }
+    }).addTo(themaLayer.windOnshore)
+};
+
+showGeojsonwindOnshore("/data/Wind-onshore_angepasst.geojson");
+
+// Windenenergie Offshore
+
+async function showGeojsonwindOffshore(url) {
+
+    let response = await fetch(url);
+    let geojson = await response.json();
+    //console.log(geojson);
+
+    L.geoJSON(geojson, {
+        style: function (feature) {
+            return {
+                color: "#F012BE",
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 1
+
+            };
+        },
+
+        onEachFeature: function (feature, layer) {
+            //console.log(feature);
+            layer.bindPopup(`
+            <h4> Windenergieanlage Offshore </h4>
+            <p> System: ${feature.properties.SYS}
+            <p> Kapazität: ${feature.properties.CAP} kW
+            `);
+        }
+    }).addTo(themaLayer.windOffshore)
+};
+
+showGeojsonwindOffshore("/data/wind_offsore_angepasst.geojson");
+
+// Wasserkraft
+
+async function showGeojsonwater(url) {
+
+    let response = await fetch(url);
+    let geojson = await response.json();
     console.log(geojson);
 
     L.geoJSON(geojson, {
@@ -104,12 +174,12 @@ async function showGeojsonwindOnshore(url) {
         onEachFeature: function (feature, layer) {
             console.log(feature);
             layer.bindPopup(`
-            <h4> Windenergieanlage Onshore </h4>
+            <h4> Wasserkraft </h4>
             <p> System: ${feature.properties.SYS}
             <p> Kapazität: ${feature.properties.CAP} kW
             `);
         }
-    }).addTo(themaLayer.windOnshore)
+    }).addTo(themaLayer.water)
 };
 
-showGeojsonwindOnshore("/data/Wind-onshore_angepasst.geojson");
+showGeojsonwater("/data/Wasserkraft_angepasst.geojson");
