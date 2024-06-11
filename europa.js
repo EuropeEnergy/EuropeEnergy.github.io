@@ -95,14 +95,16 @@ function onEachFeature(feature, layer) {
     /*layer.on({
         click: function() {sidebar.addTo(mapeu)}
     })*/
-
+    if (feature.properties.Renewables_and_biofuels == null) {
     layer.bindPopup(
-        `<h4>Land (eng): ${feature.properties.preferred_term}</h4>
-    <p>Anteil erneuerbarer Energien am gesamten Bruttoendenergieverbrauch (%): ${feature.properties.Renewables_and_biofuels}`
-    )
+        `<h4>${feature.properties.preferred_term}</h4>
+          Hier leider keine Daten verfügbar :(`
+    )}
+    else {
     layer.on({
         click: ClickOnFeature
     });
+}
 }
 
 
@@ -153,8 +155,8 @@ legend.onAdd = function (mapeu) {
             klassen[i] + (p ? '&ndash;' + p + '<br>' : '+');
     }
 
-    div.innerHTML += '<br><br><i style="background:' + "#E8DCCA" + '"></i>' +
-        'Europäisches Land, <br> keine Daten verfügbar';
+    /*div.innerHTML += '<br><br><i style="background:' + `${stripePattern}` + '"></i>' +
+        'Europäisches Land, <br> keine Daten verfügbar';*/
 
     return div;
 
@@ -177,7 +179,7 @@ showGeojsonEU("/data/Daten_Europa.geojson");
 function ClickOnFeature(e) {
 
     //Öffnen der Sidebar
-    sidebar.setContent(`<button id="b1"><b>X</b></button> <br> <b>Name des Landes: ${e.target.feature.properties.preferred_term} <br><br> <div id="Diagramm"></div> <br><br>`).show();
+    sidebar.setContent(`<button id="b1"><b>X</b></button> <br> <h1>${e.target.feature.properties.preferred_term}</h1><br><br> <div id="Diagramm"></div> <br><br>`).show();
     document.getElementById('b1').addEventListener('click', function() {
         sidebar.hide();
     })
@@ -239,6 +241,7 @@ function drawChart(diagrammdaten) {
         title: 'Kategorieanteil an Erneuerbarer Energie (%)',
         pieHole: 0.4,
         slices: {0: {color: '#CD9B1D'}, 1:{color: '#5CACEE'}, 2:{color: '#66CDAA'}, 3:{color: '#FF6347'}, 4:{color: '#EEEE00'}, 5:{color: '#AB82FF'}, 6:{color: '#528B8B'}},
+        backgroundColor: '#b3cab3',
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('Diagramm'));

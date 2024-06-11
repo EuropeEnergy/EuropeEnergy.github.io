@@ -219,8 +219,8 @@ nav ul li ul li a:hover {
 }
 
 #Diagramm {
-  width: 100%;
-  background-color:rgb(179, 202, 179); }
+  background-color:rgb(179, 202, 179); 
+  float: left;}
 
 #sidebar {
   background-color:rgb(179, 202, 179);
