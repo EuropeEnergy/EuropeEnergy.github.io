@@ -22,12 +22,11 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-/* Rückt bisher nur "Grundlagen" ein
+/*article einrücken*/
 article {
-  width: 90%;
-  margin: 0 auto;
+  margin-left: 30px;
+  margin-right: 30px;
 }
-*/
 
 #überschrift-Container {
   font-family: 'Montserrat', sans-serif;
