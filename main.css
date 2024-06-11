@@ -79,6 +79,7 @@ nav {
   background-color: white;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.11);
   position: fixed;
+  z-index: 5;
 }
 
 /*Liste der Navigationsleiste*/
@@ -136,11 +137,6 @@ nav ul li ul li a:hover {
 }
 
 
-
-
-
-
-
 /*STYLING KARTEN*/
 
 
@@ -148,12 +144,15 @@ nav ul li ul li a:hover {
   width: 100%;
   height: 85vh;
   border: 1px solid gray;
+  z-index: 1;
+  padding-top: 85px;
 }
 
 #mapde {
   width: 100%;
   height: 85vh;
   border: 1px solid grey;
+  z-index: 1;
 }
 
 #Diagramm {
