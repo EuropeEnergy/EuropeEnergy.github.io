@@ -31,15 +31,17 @@ let themaLayer = {
     windOffshore: L.markerClusterGroup({
         disableClusteringAtZoom: 17
     }),
-    water: L.featureGroup(),
-    bio: L.featureGroup()
+    water: L.markerClusterGroup({
+        disableClusteringAtZoom: 17
+    }),
+    bio: L.markerClusterGroup({
+        disableClusteringAtZoom: 17
+    })
 
 };
 
 // Hintergrundlayer
 L.control.layers({
-    "Basemap Deutschland Grau": L.tileLayer.provider("BaseMapDE.Grey"),
-    "Topo Grey": L.tileLayer.provider("TopPlusOpen.Grey"),
     "Openstreetmap": L.tileLayer.provider("OpenStreetMap.Mapnik"),
     "Esri WorldTopoMap": L.tileLayer.provider("Esri.WorldTopoMap"),
     "Esri WorldImagery": L.tileLayer.provider("Esri.WorldImagery")
@@ -92,7 +94,7 @@ async function showGeojsonwindOnshore(url) {
 
     let response = await fetch(url);
     let geojson = await response.json();
-    console.log(geojson);
+    //console.log(geojson);
 
     L.geoJSON(geojson, {
         style: function (feature) {
@@ -106,7 +108,7 @@ async function showGeojsonwindOnshore(url) {
         },
 
         onEachFeature: function (feature, layer) {
-            console.log(feature);
+            //console.log(feature);
             layer.bindPopup(`
             <h4> Windenergieanlage Onshore </h4>
             <p> System: ${feature.properties.SYS}
@@ -120,7 +122,39 @@ showGeojsonwindOnshore("/data/Wind-onshore_angepasst.geojson");
 
 // Windenenergie Offshore
 
-async function showGeojsonwindffshore(url) {
+async function showGeojsonwindOffshore(url) {
+
+    let response = await fetch(url);
+    let geojson = await response.json();
+    //console.log(geojson);
+
+    L.geoJSON(geojson, {
+        style: function (feature) {
+            return {
+                color: "#F012BE",
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 1
+
+            };
+        },
+
+        onEachFeature: function (feature, layer) {
+            //console.log(feature);
+            layer.bindPopup(`
+            <h4> Windenergieanlage Offshore </h4>
+            <p> System: ${feature.properties.SYS}
+            <p> Kapazität: ${feature.properties.CAP} kW
+            `);
+        }
+    }).addTo(themaLayer.windOffshore)
+};
+
+showGeojsonwindOffshore("/data/wind_offsore_angepasst.geojson");
+
+// Wasserkraft
+
+async function showGeojsonwater(url) {
 
     let response = await fetch(url);
     let geojson = await response.json();
@@ -140,12 +174,12 @@ async function showGeojsonwindffshore(url) {
         onEachFeature: function (feature, layer) {
             console.log(feature);
             layer.bindPopup(`
-            <h4> Windenergieanlage Offshore </h4>
+            <h4> Wasserkraft </h4>
             <p> System: ${feature.properties.SYS}
             <p> Kapazität: ${feature.properties.CAP} kW
             `);
         }
-    }).addTo(themaLayer.windOffshore)
+    }).addTo(themaLayer.water)
 };
 
-showGeojsonwindOnshore("/data/wind_offshore_angepasst.geojson");
+showGeojsonwater("/data/Wasserkraft_angepasst.geojson");
