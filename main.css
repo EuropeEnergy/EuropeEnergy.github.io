@@ -22,6 +22,10 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+footer {
+  background-color: grey;
+}
+
 /*article einrücken*/
 article {
   margin-left: 60px;
@@ -216,6 +220,10 @@ nav ul li ul li a:hover {
 #Diagramm {
   width: 100%;
   height: 50vh;
+}
+
+#sidebar {
+  z-index: 2000;
 }
 
 /*STYLING LEGENDE KARTE EUROPA*/
