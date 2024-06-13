@@ -9,12 +9,15 @@ html {
   height: 100%
 }
 
+header {
+ height: 85px;
+}
+
 main {
-  margin: 0;
+  margin-top: 0;
 }
 
 body {
-  height: 100%;
   background: rgb(248, 255, 250);
   background-size: cover;
   background-repeat: no-repeat;
@@ -207,7 +210,6 @@ nav ul li ul li a:hover {
   height: 85vh;
   border: 1px solid gray;
   z-index: 1;
-  padding-top: 85px;
 }
 
 #mapde {
@@ -215,7 +217,6 @@ nav ul li ul li a:hover {
   height: 85vh;
   border: 1px solid grey;
   z-index: 1;
-  padding-top: 200px;
 }
 
 #Diagramm {
@@ -236,6 +237,7 @@ nav ul li ul li a:hover {
   padding: 10px;
   text-align: left;
   opacity: 0.9;
+  height: 100%
 }
 
 .Strich_Sidebar {
