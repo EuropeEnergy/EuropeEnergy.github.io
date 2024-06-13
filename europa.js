@@ -103,11 +103,11 @@ function onEachFeature(feature, layer) {
           Hier leider keine Daten verfügbar :(`
         )
     }
-    else {
+    
         layer.on({
             click: ClickOnFeature
         });
-    }
+    
 }
 
 
@@ -181,10 +181,17 @@ showGeojsonEU("/data/Daten_Europa.geojson");
 //Funktion ClickOnFeature für einzelne Click Events für die Diagrammerstellung
 function ClickOnFeature(e) {
 
-    //Öffnen der Sidebar und Definition des Inhalts
-    sidebar.setContent(`<button id="b1"><b>X</b></button> <br> <h1>${e.target.feature.properties.preferred_term} (${(parseInt(e.target.feature.properties.Renewables_and_biofuels)).toFixed(1)} %)</h1><br>
-        <hr class="Strich_Sidebar"><p><h3>Kategorieanteil an Erneuerbarer Energie (%)</h3><div id="Diagramm"></div></p>`).show();
-    document.getElementById('b1').addEventListener('click', function () {
+if (e.target.feature.properties.Renewables_and_biofuels == null) {
+    sidebar.hide()
+}
+
+else {
+        //Öffnen der Sidebar und Definition des Inhalts
+        sidebar.setContent(`<button id="b1"><b>X</b></button> <br> <h1>${e.target.feature.properties.preferred_term} (${(parseInt(e.target.feature.properties.Renewables_and_biofuels)).toFixed(1)} %)</h1><br>
+        <hr class="Strich_Sidebar"><p><h3>Kategorieanteil an Erneuerbarer Energie (%)</h3><div id="Diagramm"></div><br><hr><br></p><p><div id="Tabelle"></div></p>`).show();
+    
+        //Erzeugung des Buttons zum Schließen
+        document.getElementById('b1').addEventListener('click', function () {
         sidebar.hide();
     })
 
@@ -217,17 +224,26 @@ function ClickOnFeature(e) {
 
     let diagrammdaten = []
 
-    for (let a = 0; a <= tabellenwerte.length; a++) {
+    for (let a = 0; a < tabellenwerte.length; a++) {
         diagrammdaten[a] = [tabellenbezeichnung[a], tabellenwerte[a]]
     }
 
-    //sidebar.open('sidebar')
+    //Erstellung der einzelnen Diagramme
+
+    //PIECHART
     google.charts.load('current', { packages: ['corechart'] });
     google.charts.setOnLoadCallback(function () {
         drawChart(diagrammdaten)
     });
-}
 
+    //TABELLE
+    google.charts.load('current', {'packages':['table']});
+    google.charts.setOnLoadCallback(function() {
+        drawTable(diagrammdaten);
+
+});
+}
+}
 
 
 
@@ -260,4 +276,18 @@ function drawChart(diagrammdaten) {
 
 
 
-//
+//Funktion für Erstellung einer Google-Chart Tabelle
+
+function drawTable(diagrammdaten) {
+    let data = new google.visualization.DataTable();
+    data.addColumn('string', 'Energietyp');
+    data.addColumn('number', 'Absoluter Wert (%)');
+    data.addRows(diagrammdaten);
+
+    var table = new google.visualization.Table(document.getElementById('Tabelle'));
+
+    table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+
+    console.log(diagrammdaten)
+  }
+
