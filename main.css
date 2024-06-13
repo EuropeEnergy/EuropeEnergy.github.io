@@ -219,11 +219,26 @@ nav ul li ul li a:hover {
 }
 
 #Diagramm {
-  background-color:rgb(179, 202, 179); 
-  float: left;}
+  background-color: white; 
+  width: 100%;
+  height: 35%;
+}
+
+#Diagramm path {
+  stroke: black;
+  stroke-width: 0.5;
+}
+
 
 #sidebar {
-  background-color:rgb(179, 202, 179);
+  background-color:white;
+  padding: 10px;
+  text-align: left;
+  opacity: 0.9;
+}
+
+.Strich_Sidebar {
+  margin-bottom: 8px;
 }
 
 #b1 {

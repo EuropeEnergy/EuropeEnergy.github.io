@@ -70,21 +70,23 @@ stripePattern.addTo(mapeu);
 //STYLE-Funktion GEOJSON-Objekt (Einfärbung der einzelnen Länderpolygone)
 
 function style(feature) {
-if (feature.properties.Renewables_and_biofuels == null) {
-    return {
-        fillPattern: stripePattern, 
-        weight: 2, 
-        color: "white"
-    };} 
+    if (feature.properties.Renewables_and_biofuels == null) {
+        return {
+            fillPattern: stripePattern,
+            weight: 2,
+            color: "white"
+        };
+    }
 
-else {
-    return {
-        fillColor: getColor(parseInt(feature.properties.Renewables_and_biofuels)),  //Hier ParseInt da Zahlenwert in JSON als String gespeichert
-        weight: 2,
-        opacity: 1,
-        color: "white",
-        fillOpacity: 1
-    };}
+    else {
+        return {
+            fillColor: getColor(parseInt(feature.properties.Renewables_and_biofuels)),  //Hier ParseInt da Zahlenwert in JSON als String gespeichert
+            weight: 2,
+            opacity: 1,
+            color: "white",
+            fillOpacity: 1
+        };
+    }
 }
 
 
@@ -96,15 +98,16 @@ function onEachFeature(feature, layer) {
         click: function() {sidebar.addTo(mapeu)}
     })*/
     if (feature.properties.Renewables_and_biofuels == null) {
-    layer.bindPopup(
-        `<h4>${feature.properties.preferred_term}</h4>
+        layer.bindPopup(
+            `<h4>${feature.properties.preferred_term}</h4>
           Hier leider keine Daten verfügbar :(`
-    )}
+        )
+    }
     else {
-    layer.on({
-        click: ClickOnFeature
-    });
-}
+        layer.on({
+            click: ClickOnFeature
+        });
+    }
 }
 
 
@@ -178,29 +181,30 @@ showGeojsonEU("/data/Daten_Europa.geojson");
 //Funktion ClickOnFeature für einzelne Click Events für die Diagrammerstellung
 function ClickOnFeature(e) {
 
-    //Öffnen der Sidebar
-    sidebar.setContent(`<button id="b1"><b>X</b></button> <br> <h1>${e.target.feature.properties.preferred_term}</h1><br><br> <div id="Diagramm"></div> <br><br>`).show();
-    document.getElementById('b1').addEventListener('click', function() {
+    //Öffnen der Sidebar und Definition des Inhalts
+    sidebar.setContent(`<button id="b1"><b>X</b></button> <br> <h1>${e.target.feature.properties.preferred_term} (${(parseInt(e.target.feature.properties.Renewables_and_biofuels)).toFixed(1)} %)</h1><br>
+        <hr class="Strich_Sidebar"><p><h3>Kategorieanteil an Erneuerbarer Energie (%)</h3><div id="Diagramm"></div></p>`).show();
+    document.getElementById('b1').addEventListener('click', function () {
         sidebar.hide();
     })
-    
+
 
     //Variablen um Werte aus GeoJSON abzugreifen (bzw. aus dem Feature, welches angeklickt wurde) - da String, Umwandlung in Nummer notwendig!
-    let Biomasse = parseFloat((e.target.feature.properties.Sustainable_primary_solid_biofuels).replace(',', '.')) 
-    + parseFloat((e.target.feature.properties.Charcoal).replace(',', '.')) 
-    + parseFloat((e.target.feature.properties.Sustainable_biofuels).replace(',', '.')) 
-    + parseFloat((e.target.feature.properties.Sustainable_bioliquids).replace(',', '.')) 
-    + parseFloat((e.target.feature.properties.Sustainable_biogases).replace(',', '.')) 
-    + parseFloat((e.target.feature.properties.Renewable_municipal_waste).replace(',', '.'));
-    
+    let Biomasse = parseFloat((e.target.feature.properties.Sustainable_primary_solid_biofuels).replace(',', '.'))
+        + parseFloat((e.target.feature.properties.Charcoal).replace(',', '.'))
+        + parseFloat((e.target.feature.properties.Sustainable_biofuels).replace(',', '.'))
+        + parseFloat((e.target.feature.properties.Sustainable_bioliquids).replace(',', '.'))
+        + parseFloat((e.target.feature.properties.Sustainable_biogases).replace(',', '.'))
+        + parseFloat((e.target.feature.properties.Renewable_municipal_waste).replace(',', '.'));
+
     let Wasserkraft = parseFloat((e.target.feature.properties.Hydro).replace(',', '.'))
-    + parseFloat((e.target.feature.properties.Tide_wave_ocean).replace(',','.'));
+        + parseFloat((e.target.feature.properties.Tide_wave_ocean).replace(',', '.'));
 
     let Wind = parseFloat((e.target.feature.properties.Wind).replace(',', '.'));
     let Geothermie = parseFloat((e.target.feature.properties.Geothermal).replace(',', '.'));
 
     let Sonnenenergie = parseFloat((e.target.feature.properties.Solar_thermal).replace(',', '.'))
-    + parseFloat((e.target.feature.properties.Solar_photovoltaic).replace(',','.'));
+        + parseFloat((e.target.feature.properties.Solar_photovoltaic).replace(',', '.'));
 
     let Wärmepumpen = parseFloat((e.target.feature.properties.Ambient_heat_heat_pumps).replace(',', '.'))
     let erneuerbare_Kuehlung = parseFloat((e.target.feature.properties.Renewable_cooling).replace(',', '.'))
@@ -210,10 +214,10 @@ function ClickOnFeature(e) {
     //Anlegen des Arrays, welcher dann für die Diagrammerstellung notwendig ist und an drawChart übergeben wird
     let tabellenbezeichnung = ['Biomasse', 'Wasserkraft', 'Wind', 'Geothermie', 'Sonnenergie', 'Wärmepumpen', 'erneuerbare Kühlung']
     let tabellenwerte = [Biomasse, Wasserkraft, Wind, Geothermie, Sonnenenergie, Wärmepumpen, erneuerbare_Kuehlung]
-    
+
     let diagrammdaten = []
 
-    for (let a=0; a<=tabellenwerte.length; a++) {
+    for (let a = 0; a <= tabellenwerte.length; a++) {
         diagrammdaten[a] = [tabellenbezeichnung[a], tabellenwerte[a]]
     }
 
@@ -238,10 +242,16 @@ function drawChart(diagrammdaten) {
     data.addRows(diagrammdaten)
 
     var options = {
-        title: 'Kategorieanteil an Erneuerbarer Energie (%)',
         pieHole: 0.4,
-        slices: {0: {color: '#CD9B1D'}, 1:{color: '#5CACEE'}, 2:{color: '#66CDAA'}, 3:{color: '#FF6347'}, 4:{color: '#EEEE00'}, 5:{color: '#AB82FF'}, 6:{color: '#528B8B'}},
-        backgroundColor: '#b3cab3',
+        slices: { 0: { color: '#CD9B1D' }, 1: { color: '#5CACEE' }, 2: { color: '#66CDAA' }, 3: { color: '#FF6347' }, 4: { color: '#EEEE00' }, 5: { color: '#AB82FF' }, 6: { color: '#528B8B' } },
+        backgroundColor: 'white',
+        width: "60%",
+        height: "60%",
+        legend: { position: 'bottom' },
+        pieSliceTextStyle: {
+            color: 'black',
+        }
+
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('Diagramm'));
