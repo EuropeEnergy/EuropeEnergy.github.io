@@ -187,7 +187,7 @@ if (e.target.feature.properties.Renewables_and_biofuels == null) {
 
 else {
         //Öffnen der Sidebar und Definition des Inhalts
-        sidebar.setContent(`<button id="b1"><b>X</b></button> <br> <h1>${e.target.feature.properties.preferred_term} (${(parseInt(e.target.feature.properties.Renewables_and_biofuels)).toFixed(1)} %)</h1><br>
+        sidebar.setContent(`<button id="b1"><i class="fa-regular fa-circle-xmark" font-size="50px"></i></button> <br> <h1>${e.target.feature.properties.preferred_term} (${(parseInt(e.target.feature.properties.Renewables_and_biofuels)).toFixed(1)} %)</h1><br>
         <hr class="Strich_Sidebar"><p><h3>Kategorieanteil an Erneuerbarer Energie (%)</h3><div id="Diagramm"></div><br><hr><br></p><p><div id="Tabelle"></div></p>`).show();
     
         //Erzeugung des Buttons zum Schließen
@@ -244,9 +244,6 @@ else {
 });
 }
 }
-
-
-
 
 
 //Funktion für Erstellung eines Google-Chart Diagramms 
