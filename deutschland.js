@@ -242,21 +242,25 @@ async function showGeojsonLandkreise(url) {
 		layer: landkreise,
 		propertyName: 'GEN',
 		marker: false,
-        textPlaceholder: 'Wo bin ich??',
-        textErr: 'Gibt es nicht!',
+        textPlaceholder: 'Such dir deinen Landkreis',
+        textErr: 'Versuchs nochmal',
+        collapsed: false,
+        position: 'topleft',
 		moveToLocation: function(latlng, title, map) {
 			//map.fitBounds( latlng.layer.getBounds() );
 			var zoom = map.getBoundsZoom(latlng.layer.getBounds());
-  			map.setView(latlng, zoom); // access the zoom
+  			map.setView(latlng, zoom);
 		}
 	});
 
     searchControl.on('search:locationfound', function(e) {
-        // Optional: Stil des gefundenen Features anpassen
-        e.layer.setStyle({ fillColor: 'transparent', color: '#3abfe8', opacity: 1, fillOpacity: 0.6 });
+        // Stil des gefundenen Features anpassen
+        e.layer.setStyle({ fillColor: 'transparent', color: '#3abfe8', opacity: 0.6, fillOpacity: 0.6 });
     });    
 
     mapde.addControl(searchControl);
+
+    document.querySelector('.leaflet-control-search').classList.add('suchleiste-position');
 };
 
 showGeojsonLandkreise("/data/landkreise.geojson");
