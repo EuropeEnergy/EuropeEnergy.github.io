@@ -188,7 +188,7 @@ if (e.target.feature.properties.Renewables_and_biofuels == null) {
 else {
         //Öffnen der Sidebar und Definition des Inhalts
         sidebar.setContent(`<button id="b1"><i class="fa-regular fa-circle-xmark" font-size="50px"></i></button> <br> <h1>${e.target.feature.properties.preferred_term} (${(parseInt(e.target.feature.properties.Renewables_and_biofuels)).toFixed(1)} %)</h1><br>
-        <hr class="Strich_Sidebar"><p><h2 style="font-size:18px">Kategorieanteil an Erneuerbarer Energie (%)</h2><div id="Diagramm"></div><br><hr><br></p><p><div id="Tabelle"></div></p> <br><br> <p><b>>Quelle:</b> EUROSTAT (Stand 2021); Datensatz: Share of renewable fuels in total gross final consumption of energy</p>`).show();
+        <hr class="Strich_Sidebar"><p><h2 style="font-size:18px">Kategorieanteil an Erneuerbarer Energie (%)</h2><div id="Diagramm"></div><br><hr><br></p><p><div id="Tabelle"></div></p> <br><br> <p><b>Quelle: </b><i>EUROSTAT (Stand 2021)</i><br><a href="https://ec.europa.eu/eurostat/databrowser/view/nrg_ind_rftce/default/table?lang=en&category=nrg.nrg_quant.nrg_quanta.nrg_ind_share" target="_blanc">Link zum Datensatz</a></p>`).show();
     
         //Erzeugung des Buttons zum Schließen
         document.getElementById('b1').addEventListener('click', function () {
@@ -256,7 +256,7 @@ function drawChart(diagrammdaten) {
 
     var options = {
         pieHole: 0.4,
-        slices: { 0: { color: '#8EB097' }, 1: { color: '#8AA2D1' }, 2: { color: '#D0D07B' }, 3: { color: '#C59E74' }, 4: { color: '#B374CA' }, 5: { color: '#DE7080' }, 6: { color: '#65C8CF' } },
+        slices: { 0: { color: '#8EB097' }, 1: { color: '#8AA2D1' }, 2: { color: '#65C8CF' }, 3: { color: '#C59E74' }, 4: { color: '#D0D07B' }, 5: { color: '#DE7080' }, 6: { color: '#B374CA' } },
         backgroundColor: 'white',
         width: "60%",
         height: "60%",
