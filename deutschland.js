@@ -1,14 +1,14 @@
 /* Karte Deutschland */
 
-// Brandenburger Tor
-let BBTor = {
-    lat: 52.516389,
-    lng: 13.377778,
-    title: "BBTor",
+// Mittelpunkt Deutschlands
+let Besse = {
+    lat: 51.221944,
+    lng: 9.3875,
+    title: "Besse",
 };
 
 // Karte initialisieren
-let mapde = L.map("mapde").setView([BBTor.lat, BBTor.lng], 7);
+let mapde = L.map("mapde").setView([Besse.lat, Besse.lng], 5.5);
 
 // BasemapAT Layer mit Leaflet provider plugin als startLayer Variable
 let startLayer = L.tileLayer.provider("Esri.WorldTopoMap");
