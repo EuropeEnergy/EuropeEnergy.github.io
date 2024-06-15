@@ -26,6 +26,38 @@ body {
   text-align: justify;
 }
 
+body {
+  font-family: Arial, sans-serif;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.image-container img {
+  width: 100%;
+  /* oder eine feste Breite z.B. 600px */
+  height: auto;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  color: white;
+  /* Textfarbe */
+  /* Hintergrundfarbe mit Transparenz */
+  padding: 10px 20px;
+  /* Innenabstand */
+  border-radius: 5px;
+  /* Abgerundete Ecken */
+  font-size: 60px;
+  /* Schriftgröße */
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 1)
+}
+
 h2 {
   font-size: 33px;
 }
