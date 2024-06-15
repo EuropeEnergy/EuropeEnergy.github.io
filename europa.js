@@ -125,13 +125,13 @@ klassen = [0, 15, 20, 25, 30, 35, 40];
 //GetCOLOR Funktion für Angabe der Farbabstufungen (Definition der Klassengrenzen)
 
 function getColor(a) {
-    return a <= klassen[1] ? "#c6dbef" :
-        a <= klassen[2] ? "#9ecae1" :
-            a <= klassen[3] ? "#6baed6" :
-                a <= klassen[4] ? "#4292c6" :
-                    a <= klassen[5] ? "#2171b5" :
-                        a <= klassen[6] ? "#08519c" :
-                            a > klassen[6] ? "#08306b" :
+    return a <= klassen[1] ? "#c2dcc2" :
+        a <= klassen[2] ? "#acc3ac" :
+            a <= klassen[3] ? "#96a996" :
+                a <= klassen[4] ? "#7e8e73" :
+                    a <= klassen[5] ? "#687668" :
+                        a <= klassen[6] ? "#4f5b4f" :
+                            a > klassen[6] ? "#373f37" :
                                 "#E8DCCA"
 }
 
@@ -188,7 +188,7 @@ if (e.target.feature.properties.Renewables_and_biofuels == null) {
 else {
         //Öffnen der Sidebar und Definition des Inhalts
         sidebar.setContent(`<button id="b1"><i class="fa-regular fa-circle-xmark" font-size="50px"></i></button> <br> <h1>${e.target.feature.properties.preferred_term} (${(parseInt(e.target.feature.properties.Renewables_and_biofuels)).toFixed(1)} %)</h1><br>
-        <hr class="Strich_Sidebar"><p><h3>Kategorieanteil an Erneuerbarer Energie (%)</h3><div id="Diagramm"></div><br><hr><br></p><p><div id="Tabelle"></div></p>`).show();
+        <hr class="Strich_Sidebar"><p><h2 style="font-size:18px">Kategorieanteil an Erneuerbarer Energie (%)</h2><div id="Diagramm"></div><br><hr><br></p><p><div id="Tabelle"></div></p> <br><br> <p><b>>Quelle:</b> EUROSTAT (Stand 2021); Datensatz: Share of renewable fuels in total gross final consumption of energy</p>`).show();
     
         //Erzeugung des Buttons zum Schließen
         document.getElementById('b1').addEventListener('click', function () {
@@ -219,7 +219,7 @@ else {
 
 
     //Anlegen des Arrays, welcher dann für die Diagrammerstellung notwendig ist und an drawChart übergeben wird
-    let tabellenbezeichnung = ['Biomasse', 'Wasserkraft', 'Wind', 'Geothermie', 'Sonnenergie', 'Wärmepumpen', 'erneuerbare Kühlung']
+    let tabellenbezeichnung = ['Biomasse', 'Wasserkraft', 'Wind', 'Geothermie', 'Solarenergie', 'Wärmepumpen', 'erneuerbare Kühlung']
     let tabellenwerte = [Biomasse, Wasserkraft, Wind, Geothermie, Sonnenenergie, Wärmepumpen, erneuerbare_Kuehlung]
 
     let diagrammdaten = []
@@ -256,7 +256,7 @@ function drawChart(diagrammdaten) {
 
     var options = {
         pieHole: 0.4,
-        slices: { 0: { color: '#CD9B1D' }, 1: { color: '#5CACEE' }, 2: { color: '#66CDAA' }, 3: { color: '#FF6347' }, 4: { color: '#EEEE00' }, 5: { color: '#AB82FF' }, 6: { color: '#528B8B' } },
+        slices: { 0: { color: '#8EB097' }, 1: { color: '#8AA2D1' }, 2: { color: '#D0D07B' }, 3: { color: '#C59E74' }, 4: { color: '#B374CA' }, 5: { color: '#DE7080' }, 6: { color: '#65C8CF' } },
         backgroundColor: 'white',
         width: "60%",
         height: "60%",
@@ -270,6 +270,8 @@ function drawChart(diagrammdaten) {
     var chart = new google.visualization.PieChart(document.getElementById('Diagramm'));
     chart.draw(data, options);
 }
+
+
 
 
 
