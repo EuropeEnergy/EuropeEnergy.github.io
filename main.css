@@ -9,12 +9,15 @@ html {
   height: 100%
 }
 
+header {
+ height: 85px;
+}
+
 main {
-  margin: 0;
+  margin-top: 0;
 }
 
 body {
-  height: 100%;
   background: rgb(248, 255, 250);
   background-size: cover;
   background-repeat: no-repeat;
@@ -207,7 +210,6 @@ nav ul li ul li a:hover {
   height: 85vh;
   border: 1px solid gray;
   z-index: 1;
-  padding-top: 85px;
 }
 
 #mapde {
@@ -215,22 +217,43 @@ nav ul li ul li a:hover {
   height: 85vh;
   border: 1px solid grey;
   z-index: 1;
-  padding-top: 200px;
 }
 
 #Diagramm {
-  background-color:rgb(179, 202, 179); 
-  float: left;}
+  background-color: white; 
+  width: 100%;
+  height: 35%;
+}
+
+#Diagramm path {
+  stroke: black;
+  stroke-width: 0.5;
+}
+
+
 
 #sidebar {
-  background-color:rgb(179, 202, 179);
+  background-color:white;
+  padding: 10px;
+  text-align: left;
+  height: 100%
+}
+
+.Strich_Sidebar {
+  margin-bottom: 8px;
 }
 
 #b1 {
   float: right;
+  outline: none;
   background-color: white;
-  padding: 4px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  font-size: 26px;
 }
+
+
 
 /*STYLING LEGENDE KARTE EUROPA*/
 
