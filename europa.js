@@ -155,7 +155,7 @@ legend.onAdd = function (mapeu) {
         let p = klassen[i + 1] - 1;
         div.innerHTML +=
             '<i style="background:' + getColor(klassen[i] + 1) + '"></i>' +
-            klassen[i] + (p ? '&ndash;' + p + '<br>' : '+');
+            klassen[i] + (p ? '&ndash;' + p + '<br>' : '+' ) ;
     }
 
     /*div.innerHTML += '<br><br><i style="background:' + `${stripePattern}` + '"></i>' +
@@ -187,7 +187,7 @@ if (e.target.feature.properties.Renewables_and_biofuels == null) {
 
 else {
         //Öffnen der Sidebar und Definition des Inhalts
-        sidebar.setContent(`<button id="b1"><i class="fa-regular fa-circle-xmark" font-size="50px"></i></button> <br> <h1>${e.target.feature.properties.preferred_term} (${(parseInt(e.target.feature.properties.Renewables_and_biofuels)).toFixed(1)} %)</h1><br>
+        sidebar.setContent(`<button id="b1"><i class="fa-regular fa-circle-xmark" font-size="50px"></i></button> <br> <h1>${e.target.feature.properties.preferred_term} (${(parseFloat((e.target.feature.properties.Renewables_and_biofuels).replace(',', '.'))).toFixed(1)} %)</h1><br>
         <hr class="Strich_Sidebar"><p><p style="font-size:18px;">Erneuerbare Energiekategorien (%)</h2><div id="Diagramm"></div><br><hr><br></p><p><div id="Tabelle"></div></p><p style="font-size: 12px;">*Anteil der Kategorie am gesamten Bruttoendenergieverbrauch</p> <br><br> <p><b>Quelle: </b><i>EUROSTAT (Stand 2021)</i><br><a href="https://ec.europa.eu/eurostat/databrowser/view/nrg_ind_rftce/default/table?lang=en&category=nrg.nrg_quant.nrg_quanta.nrg_ind_share" target="_blanc">Link zum Datensatz</a></p>`).show();
     
         //Erzeugung des Buttons zum Schließen
@@ -220,7 +220,7 @@ else {
 
     //Anlegen des Arrays, welcher dann für die Diagrammerstellung notwendig ist und an drawChart übergeben wird
     let tabellenbezeichnung = ['Biomasse', 'Wasserkraft', 'Wind', 'Geothermie', 'Solarenergie', 'Wärmepumpen', 'erneuerbare Kühlung']
-    let tabellenwerte = [Biomasse, Wasserkraft, Wind, Geothermie, Sonnenenergie, Wärmepumpen, erneuerbare_Kuehlung]
+    let tabellenwerte = [parseFloat(Biomasse.toFixed(1)), parseFloat(Wasserkraft.toFixed(1)), parseFloat(Wind.toFixed(1)), parseFloat(Geothermie.toFixed(1)), parseFloat(Sonnenenergie.toFixed(1)), parseFloat(Wärmepumpen.toFixed(1)), parseFloat(erneuerbare_Kuehlung.toFixed(1))]
 
     let diagrammdaten = []
 
