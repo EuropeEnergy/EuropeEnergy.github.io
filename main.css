@@ -361,6 +361,6 @@ nav ul li ul li a:hover {
 .suchleiste-position {
   position: absolute;
   top: 10px;
-  left: 5px;
+  left: 0px;
   z-index: 1000;
 }
