@@ -58,35 +58,62 @@ L.control.layers({
 
 // Import GeoJson Daten Deutschland
 
-// Freiflächen Solar
-
+// Solar Layer Heatmap und Polygone
 async function showGeojsonsolar(url) {
-
     let response = await fetch(url);
     let geojson = await response.json();
-    //console.log(geojson);
 
-    L.geoJSON(geojson, {
+    // Heatmap-Daten vorbereiten
+    let heatmap = [];
+
+    let solarLayer = L.geoJSON(geojson, {
         style: function (feature) {
             return {
-                color: "#F012BE",
+                color: '#8AA2D1', // Außenlinienfarbe
+                fillColor: '#8AA2D1', // Füllfarbe
                 weight: 2,
                 opacity: 1,
-                fillOpacity: 1
-
+                fillOpacity: 0.5
             };
         },
-
         onEachFeature: function (feature, layer) {
-            //console.log(feature);
+            let latlng = layer.getBounds().getCenter();
+            heatmap.push([latlng.lat, latlng.lng, 1]); // 1 ist die Intensität
+
             layer.bindPopup(`
-            <h4> Freiflächenanlage PV </h4>
-            <p> Typ: ${feature.properties.TYP}
-            <p> Kapazität: ${feature.properties.CAP} kW
+                <h4>Freiflächenanlage PV</h4>
+                <p>Typ: ${feature.properties.TYP}</p>
+                <p>Kapazität: ${feature.properties.CAP} kW</p>
             `);
         }
-    }).addTo(themaLayer.solar)
-};
+    }).addTo(mapde);
+
+    // Heatmap-Layer erstellen
+    let heatmapLayer = L.heatLayer(heatmap, {
+        radius: 25,
+        blur: 15,
+        maxZoom: 10
+    });
+
+    mapde.on('zoomend', function() {
+        let currentZoom = mapde.getZoom();
+        if (currentZoom < 10) {
+            if (mapde.hasLayer(solarLayer)) {
+                mapde.removeLayer(solarLayer);
+            }
+            if (!mapde.hasLayer(heatmapLayer)) {
+                mapde.addLayer(heatmapLayer);
+            }
+        } else {
+            if (!mapde.hasLayer(solarLayer)) {
+                mapde.addLayer(solarLayer);
+            }
+            if (mapde.hasLayer(heatmapLayer)) {
+                mapde.removeLayer(heatmapLayer);
+            }
+        }
+    });
+}
 
 showGeojsonsolar("/data/solar_angepasst.geojson");
 
@@ -100,15 +127,15 @@ async function showGeojsonwindOnshore(url) {
 
     L.geoJSON(geojson, {
         pointToLayer: function (feature, latlng) {
-        let windonshoreicon = "images/windturbine_onshore.png";
+            let windonshoreicon = "images/windturbine.png";
             return L.marker(latlng, {
                 icon: L.icon({
-                  iconUrl: windonshoreicon,
-                  iconAnchor: [16, 37],
-                  popupAnchor: [0, -37]
+                    iconUrl: windonshoreicon,
+                    iconAnchor: [16, 37],
+                    popupAnchor: [0, -37]
                 })
-              });
-            },
+            });
+        },
         onEachFeature: function (feature, layer) {
             //console.log(feature);
             layer.bindPopup(`
@@ -132,14 +159,14 @@ async function showGeojsonwindOffshore(url) {
 
     L.geoJSON(geojson, {
         pointToLayer: function (feature, latlng) {
-            let windoffshoreicon = "images/windturbine_offshore.png";
+            let windoffshoreicon = "images/windturbine.png";
             return L.marker(latlng, {
                 icon: L.icon({
-                  iconUrl: windoffshoreicon,
-                  iconAnchor: [16, 37],
-                  popupAnchor: [0, -37]
+                    iconUrl: windoffshoreicon,
+                    iconAnchor: [16, 37],
+                    popupAnchor: [0, -37]
                 })
-              });
+            });
         },
 
         onEachFeature: function (feature, layer) {
@@ -164,14 +191,15 @@ async function showGeojsonwater(url) {
     //console.log(geojson);
 
     L.geoJSON(geojson, {
-        style: function (feature) {
-            return {
-                color: "#F012BE",
-                weight: 2,
-                opacity: 1,
-                fillOpacity: 1
-
-            };
+        pointToLayer: function (feature, latlng) {
+            let watermillicon = "images/watermill.png";
+            return L.marker(latlng, {
+                icon: L.icon({
+                    iconUrl: watermillicon,
+                    iconAnchor: [16, 37],
+                    popupAnchor: [0, -37]
+                })
+            });
         },
 
         onEachFeature: function (feature, layer) {
@@ -196,20 +224,20 @@ async function showGeojsonbio(url) {
     //console.log(geojson);
 
     L.geoJSON(geojson, {
-        style: function (feature) {
-            return {
-                color: "#F012BE",
-                weight: 2,
-                opacity: 1,
-                fillOpacity: 1
-
-            };
+        pointToLayer: function (feature, latlng) {
+            let biomassicon = "images/biomass.png";
+            return L.marker(latlng, {
+                icon: L.icon({
+                    iconUrl: biomassicon,
+                    iconAnchor: [16, 37],
+                    popupAnchor: [0, -37]
+                })
+            });
         },
-
         onEachFeature: function (feature, layer) {
             // console.log(feature);
             layer.bindPopup(`
-            <h4> Wasserkraft </h4>
+            <h4> Biomasse </h4>
             <p> System: ${feature.properties.SYS}
             <p> Typ: ${feature.properties.TYP}
             <p> Kapazität: ${feature.properties.CAP} kW
@@ -238,27 +266,27 @@ async function showGeojsonLandkreise(url) {
             };
         }
     });
-    
+
     let searchControl = new L.Control.Search({
         markerLocation: true,
-		layer: landkreise,
-		propertyName: 'GEN',
-		marker: false,
+        layer: landkreise,
+        propertyName: 'GEN',
+        marker: false,
         textPlaceholder: 'Such dir deinen Landkreis',
         textErr: 'Versuchs nochmal',
         collapsed: false,
         position: 'topleft',
-		moveToLocation: function(latlng, title, map) {
-			//map.fitBounds( latlng.layer.getBounds() );
-			var zoom = map.getBoundsZoom(latlng.layer.getBounds());
-  			map.setView(latlng, zoom);
-		}
-	});
+        moveToLocation: function (latlng, title, map) {
+            //map.fitBounds( latlng.layer.getBounds() );
+            var zoom = map.getBoundsZoom(latlng.layer.getBounds());
+            map.setView(latlng, zoom);
+        }
+    });
 
-    searchControl.on('search:locationfound', function(e) {
+    searchControl.on('search:locationfound', function (e) {
         // Stil des gefundenen Features anpassen
         e.layer.setStyle({ fillColor: 'transparent', color: '#3abfe8', opacity: 0.6, fillOpacity: 0.6 });
-    });    
+    });
 
     mapde.addControl(searchControl);
 
