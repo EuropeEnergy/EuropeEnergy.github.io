@@ -87,7 +87,26 @@ h4 {
 }
 
 footer {
-  background-color: grey;
+  background-color: green;
+  display: grid;
+  grid-template-columns: 33% 34% 33%;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.footerleft {
+  grid-column: 1;
+  padding-left: 170px;
+}
+
+.footerright {
+  grid-column: 2;
+}
+
+.footerlogo {
+  grid-column: 3;
 }
 
 article {
@@ -97,7 +116,7 @@ article {
   border-radius: 10px;
   background-color: white;
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   margin-block-start: 5px;
 }
 
