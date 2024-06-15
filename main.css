@@ -115,8 +115,8 @@ footer {
 }
 
 article {
-  margin-left: 150px;
-  margin-right: 150px;
+  margin-left: 10%;
+  margin-right: 10%;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 1);
   border-radius: 10px;
   background-color: white;
