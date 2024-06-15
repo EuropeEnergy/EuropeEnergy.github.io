@@ -191,7 +191,7 @@ async function showGeojsonbio(url) {
 
     let response = await fetch(url);
     let geojson = await response.json();
-    console.log(geojson);
+    //console.log(geojson);
 
     L.geoJSON(geojson, {
         style: function (feature) {
@@ -205,7 +205,7 @@ async function showGeojsonbio(url) {
         },
 
         onEachFeature: function (feature, layer) {
-            console.log(feature);
+            // console.log(feature);
             layer.bindPopup(`
             <h4> Wasserkraft </h4>
             <p> System: ${feature.properties.SYS}
@@ -217,3 +217,30 @@ async function showGeojsonbio(url) {
 };
 
 showGeojsonbio("/data/bioenergy_angepasst.geojson");
+
+// Landkreise integrieren und Suchfunktion
+
+async function showGeojsonLandkreise(url) {
+    let response = await fetch(url);
+    let geojson = await response.json();
+    console.log(geojson);
+
+    let searchControl = new L.Control.Search({
+        layer: gemeindenLayer,
+        propertyName: 'GEN', // Der Name des Eigenschaftenfeldes in den GeoJSON-Daten
+        marker: false,
+        moveToLocation: function(latlng, title, map) {
+            // Bewege die Karte zur gefundenen Position
+            map.setView(latlng, 12); // Zoomstufe kann angepasst werden
+        }
+    });
+
+    searchControl.on('search:locationfound', function(e) {
+        // Optional: Stil des gefundenen Features anpassen
+        e.layer.setStyle({ fillColor: '#3f0', color: '#0f0' });
+    });
+
+    mapde.addControl(searchControl);
+};
+
+showGeojsonLandkreise("/data/landkreise.geojson");
