@@ -8,7 +8,7 @@ let BBTor = {
 };
 
 // Karte initialisieren
-let mapde = L.map("mapde").setView([BBTor.lat, BBTor.lng], 9);
+let mapde = L.map("mapde").setView([BBTor.lat, BBTor.lng], 7);
 
 // BasemapAT Layer mit Leaflet provider plugin als startLayer Variable
 let startLayer = L.tileLayer.provider("Esri.WorldTopoMap");
