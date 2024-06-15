@@ -245,6 +245,7 @@ async function showGeojsonLandkreise(url) {
         textPlaceholder: 'Such dir deinen Landkreis',
         textErr: 'Versuchs nochmal',
         collapsed: false,
+        position: 'topleft',
 		moveToLocation: function(latlng, title, map) {
 			//map.fitBounds( latlng.layer.getBounds() );
 			var zoom = map.getBoundsZoom(latlng.layer.getBounds());
@@ -258,6 +259,8 @@ async function showGeojsonLandkreise(url) {
     });    
 
     mapde.addControl(searchControl);
+
+    document.querySelector('.leaflet-control-search').classList.add('suchleiste-position');
 };
 
 showGeojsonLandkreise("/data/landkreise.geojson");
