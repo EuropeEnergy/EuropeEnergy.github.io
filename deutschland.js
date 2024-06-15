@@ -28,18 +28,41 @@ L.control.fullscreen({
 let themaLayer = {
     solar: L.featureGroup(),
     windOnshore: L.markerClusterGroup({
-        disableClusteringAtZoom: 17
+        disableClusteringAtZoom: 17,
+        iconCreateFunction: function (cluster) {
+            return L.divIcon({
+                html: `<div style="background-color: #65C8CF; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">${cluster.getChildCount()}</div>`,
+                className: 'custom-cluster-icon'
+            });
+        }
     }),
     windOffshore: L.markerClusterGroup({
-        disableClusteringAtZoom: 17
+        disableClusteringAtZoom: 17,
+        iconCreateFunction: function (cluster) {
+            return L.divIcon({
+                html: `<div style="background-color: #65C8CF; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">${cluster.getChildCount()}</div>`,
+                className: 'custom-cluster-icon'
+            });
+        }
     }),
     water: L.markerClusterGroup({
-        disableClusteringAtZoom: 17
+        disableClusteringAtZoom: 17,
+        iconCreateFunction: function (cluster) {
+            return L.divIcon({
+                html: `<div style="background-color: #8AA2D1; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">${cluster.getChildCount()}</div>`,
+                className: 'custom-cluster-icon'
+            });
+        }
     }),
     bio: L.markerClusterGroup({
-        disableClusteringAtZoom: 17
+        disableClusteringAtZoom: 17,
+        iconCreateFunction: function (cluster) {
+            return L.divIcon({
+                html: `<div style="background-color: #8EB097; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">${cluster.getChildCount()}</div>`,
+                className: 'custom-cluster-icon'
+            });
+        }
     })
-
 };
 
 // Hintergrundlayer
@@ -58,64 +81,34 @@ L.control.layers({
 
 // Import GeoJson Daten Deutschland
 
-// Solar Layer Heatmap und Polygone
 async function showGeojsonsolar(url) {
     let response = await fetch(url);
     let geojson = await response.json();
+    // console.log(geojson);
 
-    // Heatmap-Daten vorbereiten
-    let heatmap = [];
-
-    let solarLayer = L.geoJSON(geojson, {
+    L.geoJSON(geojson, {
         style: function (feature) {
             return {
-                color: '#8AA2D1', // Außenlinienfarbe
-                fillColor: '#8AA2D1', // Füllfarbe
+                color: '#D0D07B', // Außenlinienfarbe
+                fillColor: '#D0D07B', // Füllfarbe
                 weight: 2,
                 opacity: 1,
                 fillOpacity: 0.5
             };
         },
         onEachFeature: function (feature, layer) {
-            let latlng = layer.getBounds().getCenter();
-            heatmap.push([latlng.lat, latlng.lng, 1]); // 1 ist die Intensität
-
+            // console.log(feature);
             layer.bindPopup(`
                 <h4>Freiflächenanlage PV</h4>
                 <p>Typ: ${feature.properties.TYP}</p>
                 <p>Kapazität: ${feature.properties.CAP} kW</p>
             `);
         }
-    }).addTo(mapde);
-
-    // Heatmap-Layer erstellen
-    let heatmapLayer = L.heatLayer(heatmap, {
-        radius: 25,
-        blur: 15,
-        maxZoom: 10
-    });
-
-    mapde.on('zoomend', function() {
-        let currentZoom = mapde.getZoom();
-        if (currentZoom < 10) {
-            if (mapde.hasLayer(solarLayer)) {
-                mapde.removeLayer(solarLayer);
-            }
-            if (!mapde.hasLayer(heatmapLayer)) {
-                mapde.addLayer(heatmapLayer);
-            }
-        } else {
-            if (!mapde.hasLayer(solarLayer)) {
-                mapde.addLayer(solarLayer);
-            }
-            if (mapde.hasLayer(heatmapLayer)) {
-                mapde.removeLayer(heatmapLayer);
-            }
-        }
-    });
+    }).addTo(themaLayer.solar);
 }
 
 showGeojsonsolar("/data/solar_angepasst.geojson");
+
 
 // Windenenergie Onshore
 
