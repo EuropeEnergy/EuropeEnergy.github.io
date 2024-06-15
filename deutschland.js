@@ -225,20 +225,33 @@ async function showGeojsonLandkreise(url) {
     let geojson = await response.json();
     console.log(geojson);
 
-    let searchControl = new L.Control.Search({
-        layer: gemeindenLayer,
-        propertyName: 'GEN', // Der Name des Eigenschaftenfeldes in den GeoJSON-Daten
-        marker: false,
-        moveToLocation: function(latlng, title, map) {
-            // Bewege die Karte zur gefundenen Position
-            map.setView(latlng, 12); // Zoomstufe kann angepasst werden
+    let landkreise = L.geoJSON(geojson, {
+        style: function (feature) {
+            return {
+                color: 'transparent',
+                fillColor: 'transparent',
+                weight: 2,
+                opacity: 0,
+                fillOpacity: 0
+            };
         }
     });
+    
+    let searchControl = new L.Control.Search({
+		layer: landkreise,
+		propertyName: 'GEN',
+		marker: false,
+		moveToLocation: function(latlng, title, map) {
+			//map.fitBounds( latlng.layer.getBounds() );
+			var zoom = map.getBoundsZoom(latlng.layer.getBounds());
+  			map.setView(latlng, zoom); // access the zoom
+		}
+	});
 
     searchControl.on('search:locationfound', function(e) {
         // Optional: Stil des gefundenen Features anpassen
-        e.layer.setStyle({ fillColor: '#3f0', color: '#0f0' });
-    });
+        e.layer.setStyle({ fillColor: '#3f0', color: '#0f0', opacity: 1, fillOpacity: 0.6 });
+    });    
 
     mapde.addControl(searchControl);
 };
