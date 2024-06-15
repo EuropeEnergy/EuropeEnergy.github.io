@@ -20,7 +20,9 @@ L.control.scale({
 }).addTo(mapde);
 
 // Fullscreen
-L.control.fullscreen().addTo(mapde);
+L.control.fullscreen({
+    zIndex: 1000
+}).addTo(mapde);
 
 // Layerauswahl Typ Energie
 let themaLayer = {

@@ -18,7 +18,7 @@ main {
 }
 
 body {
-  background: rgb(248, 255, 250);
+  background: rgb(179, 202, 179);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -32,12 +32,10 @@ body {
 
 .image-container {
   position: relative;
-  display: inline-block;
 }
 
 .image-container img {
   width: 100%;
-  /* oder eine feste Breite z.B. 600px */
   height: auto;
 }
 
@@ -47,14 +45,9 @@ body {
   left: 20%;
   transform: translate(-50%, -50%);
   color: white;
-  /* Textfarbe */
-  /* Hintergrundfarbe mit Transparenz */
   padding: 10px 20px;
-  /* Innenabstand */
   border-radius: 5px;
-  /* Abgerundete Ecken */
   font-size: 60px;
-  /* Schriftgröße */
   text-shadow: 3px 3px 10px rgba(0, 0, 0, 1)
 }
 
@@ -64,6 +57,7 @@ p {
 }
 
 h2 {
+  padding-left: 20px;
   font-size: 33px;
   font-weight: bold;
 }
@@ -79,15 +73,19 @@ h4 {
   margin-top: 10px;
 }
 
-/*footer*/
 footer {
   background-color: grey;
 }
 
-/*article einrücken*/
 article {
   margin-left: 150px;
   margin-right: 150px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 1);
+  border-radius: 10px;
+  background-color: white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-block-start: 5px;
 }
 
 #überschrift-Container {
@@ -102,8 +100,15 @@ img {
   left: 0px;
 }
 
+#grundlagen {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+}
+
 .text_wasserkraft {
   padding-right: 20px;
+  padding-left: 20px;
   padding-bottom: 30px;
 }
 
@@ -116,6 +121,7 @@ img {
 
 .text_windkraft {
   padding-right: 20px;
+  padding-left: 20px;
   padding-bottom: 30px;
 }
 
@@ -128,6 +134,7 @@ img {
 
 .text_sonnenenergie {
   padding-right: 20px;
+  padding-left: 20px;
   padding-bottom: 30px;
 }
 
@@ -140,6 +147,7 @@ img {
 
 .text_biomasse {
   padding-right: 20px;
+  padding-left: 20px;
   padding-bottom: 30px;
 }
 
@@ -152,6 +160,7 @@ img {
 
 .text_geothermie {
   padding-right: 20px;
+  padding-left: 20px;
   padding-bottom: 30px;
 }
 
@@ -361,6 +370,6 @@ nav ul li ul li a:hover {
 .suchleiste-position {
   position: absolute;
   top: 10px;
-  left: 5px;
+  left: 0px;
   z-index: 1000;
 }
