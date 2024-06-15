@@ -31,8 +31,8 @@ footer {
 
 /*article einrücken*/
 article {
-  margin-left: 60px;
-  margin-right: 60px;
+  margin-left: 150px;
+  margin-right: 150px;
 }
 
 #überschrift-Container {
@@ -54,7 +54,7 @@ img {
 
 #wasserkraft::before {
   content: '';
-  display: block; 
+  display: block;
   height: 95px;
   margin-top: -95px;
 }
@@ -66,7 +66,7 @@ img {
 
 #windkraft::before {
   content: '';
-  display: block; 
+  display: block;
   height: 95px;
   margin-top: -95px;
 }
@@ -78,7 +78,7 @@ img {
 
 #sonnenenergie::before {
   content: '';
-  display: block; 
+  display: block;
   height: 95px;
   margin-top: -95px;
 }
@@ -90,7 +90,7 @@ img {
 
 #biomasse::before {
   content: '';
-  display: block; 
+  display: block;
   height: 95px;
   margin-top: -95px;
 }
@@ -102,7 +102,7 @@ img {
 
 #geothermie::before {
   content: '';
-  display: block; 
+  display: block;
   height: 95px;
   margin-top: -95px;
 }
