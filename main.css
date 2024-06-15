@@ -410,3 +410,9 @@ nav ul li ul li a:hover {
   left: 0px;
   z-index: 1000;
 }
+
+.custom-cluster-icon {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}

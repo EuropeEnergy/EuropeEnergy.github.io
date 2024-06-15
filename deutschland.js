@@ -28,18 +28,41 @@ L.control.fullscreen({
 let themaLayer = {
     solar: L.featureGroup(),
     windOnshore: L.markerClusterGroup({
-        disableClusteringAtZoom: 17
+        disableClusteringAtZoom: 17,
+        iconCreateFunction: function (cluster) {
+            return L.divIcon({
+                html: `<div style="background-color: #65C8CF; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">${cluster.getChildCount()}</div>`,
+                className: 'custom-cluster-icon'
+            });
+        }
     }),
     windOffshore: L.markerClusterGroup({
-        disableClusteringAtZoom: 17
+        disableClusteringAtZoom: 17,
+        iconCreateFunction: function (cluster) {
+            return L.divIcon({
+                html: `<div style="background-color: #65C8CF; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">${cluster.getChildCount()}</div>`,
+                className: 'custom-cluster-icon'
+            });
+        }
     }),
     water: L.markerClusterGroup({
-        disableClusteringAtZoom: 17
+        disableClusteringAtZoom: 17,
+        iconCreateFunction: function (cluster) {
+            return L.divIcon({
+                html: `<div style="background-color: #8AA2D1; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">${cluster.getChildCount()}</div>`,
+                className: 'custom-cluster-icon'
+            });
+        }
     }),
     bio: L.markerClusterGroup({
-        disableClusteringAtZoom: 17
+        disableClusteringAtZoom: 17,
+        iconCreateFunction: function (cluster) {
+            return L.divIcon({
+                html: `<div style="background-color: #8EB097; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">${cluster.getChildCount()}</div>`,
+                className: 'custom-cluster-icon'
+            });
+        }
     })
-
 };
 
 // Hintergrundlayer
