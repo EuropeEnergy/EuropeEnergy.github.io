@@ -8,7 +8,7 @@ let BBTor = {
 };
 
 // Karte initialisieren
-let mapde = L.map("mapde").setView([BBTor.lat, BBTor.lng], 15);
+let mapde = L.map("mapde").setView([BBTor.lat, BBTor.lng], 9);
 
 // BasemapAT Layer mit Leaflet provider plugin als startLayer Variable
 let startLayer = L.tileLayer.provider("Esri.WorldTopoMap");
@@ -238,9 +238,12 @@ async function showGeojsonLandkreise(url) {
     });
     
     let searchControl = new L.Control.Search({
+        markerLocation: true,
 		layer: landkreise,
 		propertyName: 'GEN',
 		marker: false,
+        textPlaceholder: 'Wo bin ich??',
+        textErr: 'Gibt es nicht!',
 		moveToLocation: function(latlng, title, map) {
 			//map.fitBounds( latlng.layer.getBounds() );
 			var zoom = map.getBoundsZoom(latlng.layer.getBounds());
@@ -250,7 +253,7 @@ async function showGeojsonLandkreise(url) {
 
     searchControl.on('search:locationfound', function(e) {
         // Optional: Stil des gefundenen Features anpassen
-        e.layer.setStyle({ fillColor: '#3f0', color: '#0f0', opacity: 1, fillOpacity: 0.6 });
+        e.layer.setStyle({ fillColor: 'transparent', color: '#3abfe8', opacity: 1, fillOpacity: 0.6 });
     });    
 
     mapde.addControl(searchControl);
