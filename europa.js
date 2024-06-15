@@ -188,7 +188,7 @@ if (e.target.feature.properties.Renewables_and_biofuels == null) {
 else {
         //Öffnen der Sidebar und Definition des Inhalts
         sidebar.setContent(`<button id="b1"><i class="fa-regular fa-circle-xmark" font-size="50px"></i></button> <br> <h1>${e.target.feature.properties.preferred_term} (${(parseInt(e.target.feature.properties.Renewables_and_biofuels)).toFixed(1)} %)</h1><br>
-        <hr class="Strich_Sidebar"><p><h2 style="font-size:18px">Kategorieanteil an Erneuerbarer Energie (%)</h2><div id="Diagramm"></div><br><hr><br></p><p><div id="Tabelle"></div></p> <br><br> <p><b>Quelle: </b><i>EUROSTAT (Stand 2021)</i><br><a href="https://ec.europa.eu/eurostat/databrowser/view/nrg_ind_rftce/default/table?lang=en&category=nrg.nrg_quant.nrg_quanta.nrg_ind_share" target="_blanc">Link zum Datensatz</a></p>`).show();
+        <hr class="Strich_Sidebar"><p><p style="font-size:18px;">Erneuerbare Energiekategorien (%)</h2><div id="Diagramm"></div><br><hr><br></p><p><div id="Tabelle"></div></p><p style="font-size: 12px;">*Anteil der Kategorie am gesamten Bruttoendenergieverbrauch</p> <br><br> <p><b>Quelle: </b><i>EUROSTAT (Stand 2021)</i><br><a href="https://ec.europa.eu/eurostat/databrowser/view/nrg_ind_rftce/default/table?lang=en&category=nrg.nrg_quant.nrg_quanta.nrg_ind_share" target="_blanc">Link zum Datensatz</a></p>`).show();
     
         //Erzeugung des Buttons zum Schließen
         document.getElementById('b1').addEventListener('click', function () {
@@ -280,7 +280,7 @@ function drawChart(diagrammdaten) {
 function drawTable(diagrammdaten) {
     let data = new google.visualization.DataTable();
     data.addColumn('string', 'Energietyp');
-    data.addColumn('number', 'Absoluter Wert (%)');
+    data.addColumn('number', 'Absoluter Wert (%)*');
     data.addRows(diagrammdaten);
 
     var table = new google.visualization.Table(document.getElementById('Tabelle'));
