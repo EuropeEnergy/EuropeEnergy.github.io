@@ -26,6 +26,18 @@ body {
   text-align: justify;
 }
 
+h2 {
+  font-size: 33px;
+}
+
+h3 {
+  font-size: 33px;
+}
+
+p {
+  font-size: 16px;
+}
+
 footer {
   background-color: grey;
 }
