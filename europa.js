@@ -158,7 +158,7 @@ legend.onAdd = function (mapeu) {
     let div = L.DomUtil.create('div', 'info legend')
     labels = []
 
-    div.innerHTML += "<b>Anteil* erneuerbarer Energien <br> am gesamten <br> Bruttoendenergieverbrauch*<br><br></b>"
+    div.innerHTML += "<b>Anteil* erneuerbarer Energien <br> am gesamten <br> Bruttoendenergieverbrauch<br><br></b>"
 
     for (let i = 0; i < klassen.length; i++) {
         let p = klassen[i + 1] - 1;
