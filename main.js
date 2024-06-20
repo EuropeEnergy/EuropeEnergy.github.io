@@ -1,3 +1,4 @@
+//Responsive Navigationsleiste//
 document.addEventListener('DOMContentLoaded', function () {
     const menuIcon = document.getElementById('menu-icon');
     const navLinks = document.getElementById('nav-links');
@@ -7,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+//Sliede-In-Effekt der Bilder//
 document.addEventListener('DOMContentLoaded', function () {
     const images = document.querySelectorAll('.slide-in');
 
