@@ -43,8 +43,11 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Leaflet Plugin Sidebar  -->
-    <link rel="stylesheet" href="/plugins/leaflet-sidebar.css">
-    <script src="plugins/leaflet-sidebar.js"></script>
+    <!--<link rel="stylesheet" href="/plugins/leaflet-sidebar.css">
+    <script src="plugins/leaflet-sidebar.js"></script>-->
+    <script src="https://unpkg.com/leaflet-sidebar@0.2.0/src/L.Control.Sidebar.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/leaflet-sidebar@0.2.0/src/L.Control.Sidebar.css" />
+
 
     <!-- Leaflet Control Search -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-search/4.0.0/leaflet-search.src.js"
@@ -53,7 +56,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-search/4.0.0/leaflet-search.src.css"
         integrity="sha512-FpR43e7Pv4bypI4ZNr31smjoOlRUYsCXDsiS/1bYoiwuPIPhXmsQILkSTiEORn3RRJNu9hgtpnT5VPfUty6Azw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        
+
     <!-- Style und Hauptskript für Deutschland -->
     <link rel="stylesheet" href="main.css" />
     <script defer src="deutschland.js"></script>
@@ -88,6 +91,39 @@
                 <p style="font-size: 60px">Deutschlandkarte
             </div>
             <article>
+                <div id="sidebar" class="sidebar collapsed">
+                    <div class="sidebar-tabs">
+                        <ul role="tablist">
+                            <li><a href="#solar" role="tab"><i class="fa fa-sun-o"></i></a></li>
+                            <li><a href="#windOnshore" role="tab"><i class="fa fa-wind"></i></a></li>
+                            <li><a href="#windOffshore" role="tab"><i class="fa fa-water"></i></a></li>
+                            <li><a href="#water" role="tab"><i class="fa fa-tint"></i></a></li>
+                            <li><a href="#bio" role="tab"><i class="fa fa-leaf"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-content">
+                        <div id="solar" class="sidebar-pane">
+                            <h1 class="sidebar-header">Solarenergie</h1>
+                            <!-- Inhalt für Solarenergie -->
+                        </div>
+                        <div id="windOnshore" class="sidebar-pane">
+                            <h1 class="sidebar-header">Windenergie Onshore</h1>
+                            <!-- Inhalt für Windenergie Onshore -->
+                        </div>
+                        <div id="windOffshore" class="sidebar-pane">
+                            <h1 class="sidebar-header">Windenergie Offshore</h1>
+                            <!-- Inhalt für Windenergie Offshore -->
+                        </div>
+                        <div id="water" class="sidebar-pane">
+                            <h1 class="sidebar-header">Wasserkraft</h1>
+                            <!-- Inhalt für Wasserkraft -->
+                        </div>
+                        <div id="bio" class="sidebar-pane">
+                            <h1 class="sidebar-header">Biomasse</h1>
+                            <!-- Inhalt für Biomasse -->
+                        </div>
+                    </div>
+                </div>
                 <div id="mapde"></div>
             </article>
             <footer>

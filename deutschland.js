@@ -14,9 +14,9 @@ let mapde = L.map("mapde", {zoomControl: false}).setView([Besse.lat, Besse.lng],
 new L.Control.Zoom({position: 'bottomleft'}).addTo(mapde);
 
 // Sidebar initialisieren
-let sidebar = L.control.sidebar('sidebar', {
+let sidebar = L.control.sidebar('sidebarDE', {
     closeButton: true,
-    position: 'left'
+    position: 'right'
 }).addTo(mapde);
 
 // BasemapAT Layer mit Leaflet provider plugin als startLayer Variable
