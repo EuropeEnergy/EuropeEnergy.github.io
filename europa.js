@@ -198,7 +198,7 @@ function ClickOnFeature(e) {
     else {
         //Öffnen der Sidebar und Definition des Inhalts
         sidebar.setContent(`<button id="b1"><i class="fa-regular fa-circle-xmark" font-size="50px"></i></button> <br> <h1>${e.target.feature.properties.preferred_term} (${(parseFloat((e.target.feature.properties.Renewables_and_biofuels).replace(',', '.'))).toFixed(1)} %)</h1><br>
-        <hr class="Strich_Sidebar"><p><p style="font-size:18px;">Erneuerbarer Energietyp (%)</h2><div id="Diagramm"></div><br><hr><br></p><p><div id="Tabelle"></div></p><p style="font-size: 12px;">*Anteil der Kategorie am gesamten Bruttoendenergieverbrauch</p> <br><br> <p><b>Quelle: </b><i>EUROSTAT (Stand 2021)</i><br><a href="https://ec.europa.eu/eurostat/databrowser/view/nrg_ind_rftce/default/table?lang=en&category=nrg.nrg_quant.nrg_quanta.nrg_ind_share" target="_blanc">Link zum Datensatz</a></p>`).show();
+        <hr class="Strich_Sidebar"><p><p style="font-size:18px;">Energieform (Anteile in %)</h2><div id="Diagramm"></div><br><hr><br></p><p><div id="Tabelle"></div></p><p style="font-size: 12px;">*Anteil der Kategorie am gesamten Bruttoendenergieverbrauch</p> <br><br> <p><b>Quelle: </b><i>EUROSTAT (Stand 2021)</i><br><a href="https://ec.europa.eu/eurostat/databrowser/view/nrg_ind_rftce/default/table?lang=en&category=nrg.nrg_quant.nrg_quanta.nrg_ind_share" target="_blanc">Link zum Datensatz</a></p>`).show();
 
         //Erzeugung des Buttons zum Schließen
         document.getElementById('b1').addEventListener('click', function () {

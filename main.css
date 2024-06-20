@@ -39,7 +39,7 @@ article {
 
 /*Formatierung footer*/
 footer {
-  background-color: rgb(98, 137, 98);
+  background-color: rgb(123, 153, 123);
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   padding-top: 10px;
@@ -47,6 +47,7 @@ footer {
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 1);
   padding-left: 10%;
   padding-right: 10%;
+  color: rgb(226, 226, 226);
 }
 
 /*Generelle Formatierung Überschrift + Header-Bild*/
