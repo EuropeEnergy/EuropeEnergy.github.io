@@ -469,26 +469,23 @@ section {
 
 .PopUp_Wasser .leaflet-popup-content-wrapper,
 .PopUp_Wasser .leaflet-popup-tip  {
-background-color: #8AA2D1;
-opacity: 0.5;
+background: rgba(138, 162, 209, 0.8);
 }
+
 
 .PopUp_Wind .leaflet-popup-content-wrapper,
 .PopUp_Wind .leaflet-popup-tip  {
-background-color: #65C8CF;
-opacity: 0.5;
+background: rgba(101, 200, 207, 0.8);
 }
 
 .PopUp_Solar .leaflet-popup-content-wrapper,
 .PopUp_Solar .leaflet-popup-tip  {
-background-color: #65C8CF;
-opacity: 0.5;
+background: rgba(101, 200, 207, 0.8);
 }
 
 .PopUp_Bio .leaflet-popup-content-wrapper,
 .PopUp_Bio .leaflet-popup-tip  {
-background-color: #b0a48e;
-opacity: 0.5;
+background: rgba(176, 164, 142, 0.8);
 }
 
 /*STYLING SUCHFUNKTION KARTE DEUTSCHLAND 
