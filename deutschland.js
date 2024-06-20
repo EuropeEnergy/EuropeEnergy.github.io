@@ -8,16 +8,10 @@ let Besse = {
 };
 
 // Karte initialisieren
-let mapde = L.map("mapde", {zoomControl: false}).setView([Besse.lat, Besse.lng], 5.5);
+let mapde = L.map("mapde", { zoomControl: false }).setView([Besse.lat, Besse.lng], 5.5);
 
 // Zoom Control
-new L.Control.Zoom({position: 'bottomleft'}).addTo(mapde);
-
-// Sidebar initialisieren
-let sidebarDE = L.control.sidebar('sidebarDE', {
-    closeButton: true,
-    position: 'right'
-}).addTo(mapde);
+new L.Control.Zoom({ position: 'bottomleft' }).addTo(mapde);
 
 // BasemapAT Layer mit Leaflet provider plugin als startLayer Variable
 let startLayer = L.tileLayer.provider("Esri.WorldTopoMap");
@@ -68,7 +62,7 @@ let themaLayer = {
         disableClusteringAtZoom: 17,
         iconCreateFunction: function (cluster) {
             return L.divIcon({
-                html: `<div style="background-color: #8EB097; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">${cluster.getChildCount()}</div>`,
+                html: `<div style="background-color: #b0a48e; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">${cluster.getChildCount()}</div>`,
                 className: 'custom-cluster-icon'
             });
         }
@@ -88,31 +82,6 @@ L.control.layers({
     "Biomasse": themaLayer.bio
 
 }, { collapsed: false }).addTo(mapde);
-
-// Sidebar öffnen, wenn ein bestimmter Thema-Layer ausgewählt wird
-mapde.on('overlayadd', function(eventLayer) {
-    if (eventLayer.name === 'Solarenergie') {
-        sidebarDE.open('solar');
-    } else if (eventLayer.name === 'Windenergie Onshore') {
-        sidebarDE.open('windOnshore');
-    } else if (eventLayer.name === 'Windenergie Offshore') {
-        sidebarDE.open('windOffshore');
-    } else if (eventLayer.name === 'Wasserkraft') {
-        sidebarDE.open('water');
-    } else if (eventLayer.name === 'Biomasse') {
-        sidebarDE.open('bio');
-    }
-});
-
-mapde.on('overlayremove', function(eventLayer) {
-    if (eventLayer.name === 'Solarenergie' || 
-        eventLayer.name === 'Windenergie Onshore' || 
-        eventLayer.name === 'Windenergie Offshore' || 
-        eventLayer.name === 'Wasserkraft' || 
-        eventLayer.name === 'Biomasse') {
-        sidebarDE.close();
-    }
-});
 
 // Import GeoJson Daten Deutschland
 
@@ -167,9 +136,11 @@ async function showGeojsonwindOnshore(url) {
         onEachFeature: function (feature, layer) {
             //console.log(feature);
             layer.bindPopup(`
-            <h4> Windenergieanlage Onshore </h4>
-            <br> Hersteller: ${feature.properties.SYS}
-            <br> Kapazität: ${feature.properties.CAP} kW
+                <div class = "popupwind">
+                    <h4>Windenergieanlage Offshore</h4>
+                    <p>System: ${feature.properties.SYS}</p>
+                    <p>Kapazität: ${feature.properties.CAP} kW</p>
+                </div>
             `);
         }
     }).addTo(themaLayer.windOnshore)
@@ -198,14 +169,15 @@ async function showGeojsonwindOffshore(url) {
         },
 
         onEachFeature: function (feature, layer) {
-            //console.log(feature);
             layer.bindPopup(`
-            <h4> Windenergieanlage Offshore </h4>
-            <p> System: ${feature.properties.SYS}
-            <p> Kapazität: ${feature.properties.CAP} kW
+                <div class = "popupwind">
+                    <h4>Windenergieanlage Offshore</h4>
+                    <p>System: ${feature.properties.SYS}</p>
+                    <p>Kapazität: ${feature.properties.CAP} kW</p>
+                </div>
             `);
         }
-    }).addTo(themaLayer.windOffshore)
+    }).addTo(themaLayer.windOffshore);
 };
 
 showGeojsonwindOffshore("/data/wind_offsore_angepasst.geojson");
@@ -266,6 +238,7 @@ async function showGeojsonbio(url) {
             // console.log(feature);
             layer.bindPopup(`
             <h4> Biomasse </h4>
+            <hr>
             <p> System: ${feature.properties.SYS}
             <p> Typ: ${feature.properties.TYP}
             <p> Kapazität: ${feature.properties.CAP} kW
