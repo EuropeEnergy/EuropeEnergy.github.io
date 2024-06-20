@@ -8,7 +8,10 @@ let Besse = {
 };
 
 // Karte initialisieren
-let mapde = L.map("mapde").setView([Besse.lat, Besse.lng], 5.5);
+let mapde = L.map("mapde", {zoomControl: false}).setView([Besse.lat, Besse.lng], 5.5);
+
+// Zoom Control
+new L.Control.Zoom({position: 'bottomleft'}).addTo(mapde);
 
 // BasemapAT Layer mit Leaflet provider plugin als startLayer Variable
 let startLayer = L.tileLayer.provider("Esri.WorldTopoMap");
@@ -17,11 +20,12 @@ startLayer.addTo(mapde);
 // Maßstab
 L.control.scale({
     imperial: false,
+    position: ''
 }).addTo(mapde);
 
 // Fullscreen
 L.control.fullscreen({
-    zIndex: 1000
+    position: 'bottomright'
 }).addTo(mapde);
 
 // Layerauswahl Typ Energie
@@ -77,7 +81,7 @@ L.control.layers({
     "Wasserkraft": themaLayer.water,
     "Biomasse": themaLayer.bio
 
-}).addTo(mapde);
+}, { collapsed: false }).addTo(mapde);
 
 // Import GeoJson Daten Deutschland
 
@@ -283,7 +287,7 @@ async function showGeojsonLandkreise(url) {
 
     mapde.addControl(searchControl);
 
-    document.querySelector('.leaflet-control-search').classList.add('suchleiste-position');
+    //document.querySelector('.leaflet-control-search').classList.add('suchleiste-position');
 };
 
 showGeojsonLandkreise("/data/landkreise.geojson");

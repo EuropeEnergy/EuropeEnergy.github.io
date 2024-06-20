@@ -404,14 +404,14 @@ nav ul li ul li a:hover {
 	background: url('/images/lupe.svg') no-repeat 4px 4px #fff;
 	border-radius:4px;
   transform: translateX(-50%);
-} */
+} 
 
 .suchleiste-position {
   position: absolute;
   top: 10px;
   left: 0px;
   z-index: 1000;
-}
+} */
 
 .custom-cluster-icon {
   background-color: transparent !important;
