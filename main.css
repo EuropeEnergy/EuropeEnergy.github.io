@@ -465,6 +465,32 @@ section {
   box-shadow: none !important;
 }
 
+/* Pop-Up Styles */
+
+.PopUp_Wasser .leaflet-popup-content-wrapper,
+.PopUp_Wasser .leaflet-popup-tip  {
+background-color: #8AA2D1;
+opacity: 0.5;
+}
+
+.PopUp_Wind .leaflet-popup-content-wrapper,
+.PopUp_Wind .leaflet-popup-tip  {
+background-color: #65C8CF;
+opacity: 0.5;
+}
+
+.PopUp_Solar .leaflet-popup-content-wrapper,
+.PopUp_Solar .leaflet-popup-tip  {
+background-color: #65C8CF;
+opacity: 0.5;
+}
+
+.PopUp_Bio .leaflet-popup-content-wrapper,
+.PopUp_Bio .leaflet-popup-tip  {
+background-color: #b0a48e;
+opacity: 0.5;
+}
+
 /*STYLING SUCHFUNKTION KARTE DEUTSCHLAND 
 
 .leaflet-container .leaflet-control-search {
