@@ -85,6 +85,8 @@ L.control.layers({
 
 // Import GeoJson Daten Deutschland
 
+// Solaranlagen
+
 async function showGeojsonsolar(url) {
     let response = await fetch(url);
     let geojson = await response.json();
@@ -103,9 +105,12 @@ async function showGeojsonsolar(url) {
         onEachFeature: function (feature, layer) {
             // console.log(feature);
             layer.bindPopup(`
-                <h4>Freiflächenanlage PV</h4>
-                <p>Typ: ${feature.properties.TYP}</p>
-                <p>Kapazität: ${feature.properties.CAP} kW</p>
+            <h5> Solarpark </h5>
+            <hr>
+            <p> Inbetriebnahme: ${feature.properties.COD}
+            <br> Typ: ${feature.properties.TYP}
+            <br> Installierte Leistung: ${feature.properties.CAP} kW
+            <br> Ausrichtung: ${feature.properties.ALG}
             `, { className: 'PopUp_Solar' });
         }
     }).addTo(themaLayer.solar);
@@ -136,9 +141,13 @@ async function showGeojsonwindOnshore(url) {
         onEachFeature: function (feature, layer) {
             //console.log(feature);
             layer.bindPopup(`
-            <h4>Windenergieanlage Offshore</h4>
-            <p>System: ${feature.properties.SYS}</p>
-            <p>Kapazität: ${feature.properties.CAP} kW</p>
+            <h5> Windanlage Onshore </h5>
+            <hr>
+            <p> Inbetriebnahme: ${feature.properties.COD}
+            <br> System: ${feature.properties.SYS}
+            <br> Installierte Leistung: ${feature.properties.CAP} kW
+            <br> Anlagenhöhe: ${feature.properties.HUB}
+            <br> Rotordurchmesser: ${feature.properties.ROD}
             `, { className: 'PopUp_Wind' });
         }
     }).addTo(themaLayer.windOnshore)
@@ -168,9 +177,13 @@ async function showGeojsonwindOffshore(url) {
 
         onEachFeature: function (feature, layer) {
             layer.bindPopup(`
-            <h4>Windenergieanlage Offshore</h4>
-            <p>System: ${feature.properties.SYS}</p>
-            <p>Kapazität: ${feature.properties.CAP} kW</p>   
+            <h5> Windanlage Onshore </h5>
+            <hr>
+            <p> Inbetriebnahme: ${feature.properties.COD}
+            <br> System: ${feature.properties.SYS}
+            <br> Installierte Leistung: ${feature.properties.CAP} kW
+            <br> Anlagenhöhe: ${feature.properties.HUB}
+            <br> Rotordurchmesser: ${feature.properties.ROD} 
             `, { className: 'PopUp_Wind' });
         }
     }).addTo(themaLayer.windOffshore);
@@ -201,9 +214,11 @@ async function showGeojsonwater(url) {
         onEachFeature: function (feature, layer) {
             //console.log(feature);
             layer.bindPopup(`
-            <h4> Wasserkraft </h4>
-            <p> System: ${feature.properties.SYS}
-            <p> Kapazität: ${feature.properties.CAP} kW
+            <h5> Wasserkraft </h5>
+            <hr>
+            <p> Inbetriebnahme: ${feature.properties.COD}
+            <br> System: ${feature.properties.SYS}
+            <br> Installierte Leistung: ${feature.properties.CAP} kW
             `, { className: 'PopUp_Wasser' });
         }
     }).addTo(themaLayer.water)
@@ -233,11 +248,11 @@ async function showGeojsonbio(url) {
         onEachFeature: function (feature, layer) {
             // console.log(feature);
             layer.bindPopup(`
-            <h4> Biomasse </h4>
+            <h5> Biomasse </h5>
             <hr>
-            <p> System: ${feature.properties.SYS}
-            <p> Typ: ${feature.properties.TYP}
-            <p> Kapazität: ${feature.properties.CAP} kW
+            <p> Inbetriebnahme: ${feature.properties.COD}
+            <br> Typ: ${feature.properties.TYP}
+            <br> Installierte Leistung: ${feature.properties.CAP} kW
             `, { className: 'PopUp_Bio' });
         }
     }).addTo(themaLayer.bio)
