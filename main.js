@@ -1,4 +1,4 @@
-//Responsive Navigationsleiste//
+//Responsive Navigationsleiste
 document.addEventListener('DOMContentLoaded', function () {
     const menuIcon = document.getElementById('menu-icon');
     const navLinks = document.getElementById('nav-links');
