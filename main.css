@@ -40,13 +40,13 @@ article {
 /*Formatierung footer*/
 footer {
   background-color: rgb(98, 137, 98);
-  display: grid;
-  grid-template-columns: 33% 34% 33%;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   padding-top: 10px;
   padding-bottom: 10px;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 1);
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 /*Generelle Formatierung Überschrift + Header-Bild*/
@@ -203,6 +203,19 @@ nav ul li ul li a:hover {
     display: block;
   }
 
+  /*Anpassung Überschriften bei Mobilansicht*/
+  .overlay-text {
+    position: absolute;
+    top: 50%;
+    right 35%;
+    transform: translate(-50%, -50%);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 60px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 1)
+  }
+
   /*Formatierung der Liste der Navigationsleiste*/
   nav ul {
     float: right;
@@ -234,24 +247,21 @@ nav ul li ul li a:hover {
   }
 }
 
-.footerleft {
-  grid-column: 1;
-  padding-left: 170px;
+/*Formatierung Footer*/
+#footerlogo {
+  float: right;
+  padding-right: 20px;
+  max-width: 210px;
 }
 
-/*Formatierung Footer*/
-.footerright {
-  grid-column: 2;
+#footerleft {
+  float: left;
+  padding-left: 20px;
+}
+
+#footerright {
   text-align: center;
 }
-
-.footerlogo {
-  grid-column: 3;
-  max-width: 210px;
-  height: auto;
-  margin-left: 130px;
-}
-
 
 /*Startseite*/
 
@@ -468,24 +478,24 @@ section {
 /* Pop-Up Styles */
 
 .PopUp_Wasser .leaflet-popup-content-wrapper,
-.PopUp_Wasser .leaflet-popup-tip  {
-background: rgba(138, 162, 209, 0.8);
+.PopUp_Wasser .leaflet-popup-tip {
+  background: rgba(138, 162, 209, 0.8);
 }
 
 
 .PopUp_Wind .leaflet-popup-content-wrapper,
-.PopUp_Wind .leaflet-popup-tip  {
-background: rgba(101, 200, 207, 0.8);
+.PopUp_Wind .leaflet-popup-tip {
+  background: rgba(101, 200, 207, 0.8);
 }
 
 .PopUp_Solar .leaflet-popup-content-wrapper,
-.PopUp_Solar .leaflet-popup-tip  {
-background: rgba(101, 200, 207, 0.8);
+.PopUp_Solar .leaflet-popup-tip {
+  background: rgba(101, 200, 207, 0.8);
 }
 
 .PopUp_Bio .leaflet-popup-content-wrapper,
-.PopUp_Bio .leaflet-popup-tip  {
-background: rgba(176, 164, 142, 0.8);
+.PopUp_Bio .leaflet-popup-tip {
+  background: rgba(176, 164, 142, 0.8);
 }
 
 /*STYLING SUCHFUNKTION KARTE DEUTSCHLAND 
