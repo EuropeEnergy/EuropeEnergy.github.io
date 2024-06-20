@@ -14,7 +14,7 @@ let mapde = L.map("mapde", { zoomControl: false }).setView([Besse.lat, Besse.lng
 new L.Control.Zoom({ position: 'bottomleft' }).addTo(mapde);
 
 // BasemapAT Layer mit Leaflet provider plugin als startLayer Variable
-let startLayer = L.tileLayer.provider("Esri.WorldTopoMap");
+let startLayer = L.tileLayer.provider("Esri.WorldImagery");
 startLayer.addTo(mapde);
 
 // Maßstab
@@ -30,7 +30,7 @@ L.control.fullscreen({
 
 // Layerauswahl Energietyp
 let themaLayer = {
-    solar: L.featureGroup(),
+    solar: L.featureGroup().addTo(mapde),
     windOnshore: L.markerClusterGroup({
         disableClusteringAtZoom: 17,
         iconCreateFunction: function (cluster) {
@@ -99,7 +99,7 @@ async function showGeojsonsolar(url) {
                 fillColor: '#D0D07B', // Füllfarbe
                 weight: 2,
                 opacity: 1,
-                fillOpacity: 0.5
+                fillOpacity: 1
             };
         },
         onEachFeature: function (feature, layer) {
@@ -107,7 +107,7 @@ async function showGeojsonsolar(url) {
             layer.bindPopup(`
             <h5> Solarpark </h5>
             <hr>
-            <p> Inbetriebnahme: ${feature.properties.COD}
+            <br> Inbetriebnahme: ${feature.properties.COD}
             <br> Typ: ${feature.properties.TYP}
             <br> Installierte Leistung: ${feature.properties.CAP} kW
             <br> Ausrichtung: ${feature.properties.ALG}
@@ -117,7 +117,6 @@ async function showGeojsonsolar(url) {
 }
 
 showGeojsonsolar("/data/solar_angepasst.geojson");
-
 
 // Windenenergie Onshore
 

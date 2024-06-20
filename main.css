@@ -495,7 +495,7 @@ section {
 
 .PopUp_Bio .leaflet-popup-content-wrapper,
 .PopUp_Bio .leaflet-popup-tip {
-  background: rgba(176, 164, 142, 0.8);
+  background: hsla(39, 18%, 62%, 0.8);
 }
 
 /*STYLING SUCHFUNKTION KARTE DEUTSCHLAND 
