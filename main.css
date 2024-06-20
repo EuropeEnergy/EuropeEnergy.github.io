@@ -248,6 +248,27 @@ nav ul li ul li a:hover {
   }
 }
 
+/*Formatierung Bannerquelle*/
+.banner-container {
+  position: relative;
+  display: inline-block;
+}
+
+.banner-container img {
+  display: block;
+}
+
+.banner-container .Quelle {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 5px;
+  font-size: 12px;
+  border-radius: 3px;
+}
+
 /*Formatierung Footer*/
 #footerlogo {
   float: right;
