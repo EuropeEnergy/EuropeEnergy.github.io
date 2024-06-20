@@ -106,7 +106,7 @@ async function showGeojsonsolar(url) {
                 <h4>Freiflächenanlage PV</h4>
                 <p>Typ: ${feature.properties.TYP}</p>
                 <p>Kapazität: ${feature.properties.CAP} kW</p>
-            `);
+            `, { className: 'PopUp_Solar' });
         }
     }).addTo(themaLayer.solar);
 }
@@ -136,12 +136,10 @@ async function showGeojsonwindOnshore(url) {
         onEachFeature: function (feature, layer) {
             //console.log(feature);
             layer.bindPopup(`
-                <div class = "popupwind">
-                    <h4>Windenergieanlage Offshore</h4>
-                    <p>System: ${feature.properties.SYS}</p>
-                    <p>Kapazität: ${feature.properties.CAP} kW</p>
-                </div>
-            `);
+            <h4>Windenergieanlage Offshore</h4>
+            <p>System: ${feature.properties.SYS}</p>
+            <p>Kapazität: ${feature.properties.CAP} kW</p>
+            `, { className: 'PopUp_Wind' });
         }
     }).addTo(themaLayer.windOnshore)
 };
@@ -170,12 +168,10 @@ async function showGeojsonwindOffshore(url) {
 
         onEachFeature: function (feature, layer) {
             layer.bindPopup(`
-                <div class = "popupwind">
-                    <h4>Windenergieanlage Offshore</h4>
-                    <p>System: ${feature.properties.SYS}</p>
-                    <p>Kapazität: ${feature.properties.CAP} kW</p>
-                </div>
-            `);
+            <h4>Windenergieanlage Offshore</h4>
+            <p>System: ${feature.properties.SYS}</p>
+            <p>Kapazität: ${feature.properties.CAP} kW</p>   
+            `, { className: 'PopUp_Wind' });
         }
     }).addTo(themaLayer.windOffshore);
 };
@@ -208,7 +204,7 @@ async function showGeojsonwater(url) {
             <h4> Wasserkraft </h4>
             <p> System: ${feature.properties.SYS}
             <p> Kapazität: ${feature.properties.CAP} kW
-            `);
+            `, { className: 'PopUp_Wasser' });
         }
     }).addTo(themaLayer.water)
 };
@@ -242,7 +238,7 @@ async function showGeojsonbio(url) {
             <p> System: ${feature.properties.SYS}
             <p> Typ: ${feature.properties.TYP}
             <p> Kapazität: ${feature.properties.CAP} kW
-            `);
+            `, { className: 'PopUp_Bio' });
         }
     }).addTo(themaLayer.bio)
 };
