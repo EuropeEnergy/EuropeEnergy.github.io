@@ -1,22 +1,20 @@
 /* Styles Projekt - Erneuerbare Energien */
 
+
+/*Allgemein*/
+
+/*Ungewollte Ränder verhindern*/
 * {
   margin: 0;
   padding: 0;
 }
 
-html {
-  height: 100%
-}
-
+/*Formatierung Header*/
 header {
   height: 85px;
 }
 
-main {
-  margin-top: 0;
-}
-
+/*Formatierung Body*/
 body {
   background: rgb(179, 202, 179);
   background-size: cover;
@@ -24,46 +22,71 @@ body {
   background-attachment: fixed;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-align: justify;
-}
-
-body {
   font-family: Arial, sans-serif;
 }
 
-.image-container {
+/*Formatierung article*/
+article {
+  margin-left: 10%;
+  margin-right: 10%;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 1);
+  border-radius: 10px;
+  background-color: white;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  margin-block-start: 5px;
+}
+
+/*Formatierung footer*/
+footer {
+  background-color: rgb(98, 137, 98);
+  display: grid;
+  grid-template-columns: 33% 34% 33%;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 1);
+}
+
+/*Generelle Formatierung Überschrift + Header-Bild*/
+#überschrift-Container {
+  font-family: 'Montserrat', sans-serif;
   position: relative;
+  width: 100%
 }
 
-/*Slide-in-Effekt für index.html*/
-.slide-in {
-  position: relative;
-  opacity: 0;
-  transform: translateY(100%);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-.slide-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.image-container img {
+/*Generelle Formatierung aller Bilder*/
+img {
   width: 100%;
   height: auto;
+  left: 0px;
 }
 
-.overlay-text {
+
+/*Seitentitel über dem Banner*/
+#text-overlay {
   position: absolute;
-  top: 50%;
-  left: 20%;
-  transform: translate(-50%, -50%);
+  top: 30%;
+  left: 1%;
   color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 60px;
-  text-shadow: 3px 3px 10px rgba(0, 0, 0, 1)
+  font-weight: bold;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5)
 }
 
+/*Kurzbeschreibung der Karten*/
+#text-overlay2 {
+  position: absolute;
+  padding: 1%;
+  top: 40%;
+  color: white;
+  left: 2%;
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  background: rgba(255, 255, 255, 0.24);
+  border-radius: 5px;
+}
+
+/*Formatierung Schriftarten*/
 p {
   font-size: 16px;
   margin-top: 3px;
@@ -86,15 +109,129 @@ h4 {
   margin-top: 10px;
 }
 
-footer {
-  background-color: rgb(98, 137, 98);
-  display: grid;
-  grid-template-columns: 33% 34% 33%;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 1);
+h5 {
+  font-size: 16px;
+}
+
+/*Navigationsleiste*/
+/*Formatierung Logo*/
+.logo {
+  width: 15%;
+  float: left;
+  margin: 1%;
+}
+
+/*Formatierung Navigationsleiste*/
+nav {
+  width: 100%;
+  height: 85px;
+  background-color: white;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.11);
+  position: fixed;
+  z-index: 5;
+}
+
+/*Formatierung der Liste der Navigationsleiste*/
+nav ul {
+  float: right;
+}
+
+/*Formatirung der Einträge der Liste*/
+nav ul li {
+  float: left;
+  list-style: none;
+  position: relative;
+}
+
+/*Formatierung der Inhalt der Einträge*/
+nav ul li a {
+  font-family: Arial;
+  color: #272727;
+  font-size: 24px;
+  text-decoration: none;
+  padding: 28px;
+  display: block;
+}
+
+/*Hover Effekt für Inhalte der Navigationsleiste*/
+nav ul li a:hover {
+  background-color: rgb(179, 202, 179);
+  ;
+}
+
+/*Formatierung des Dropdown-Menü*/
+nav ul li ul {
+  display: none;
+  position: absolute;
+  background-color: rgb(146, 175, 146);
+  padding: 7px;
+  border-radius: 0px 0px 12px 12px;
+}
+
+/*Dropdown-Menü Anzeige nur bei Hover*/
+nav ul li:hover ul {
+  display: block;
+}
+
+/*Formatierung der Inhalte im Dropdown Menü*/
+nav ul li ul li a {
+  color: white;
+  padding: 16px 20px;
+  border-radius: 10px;
+}
+
+/*Hover für Inhalte Dropdown Menü*/
+nav ul li ul li a:hover {
+  background-color: rgb(100, 134, 100);
+}
+
+/*Responsives Design der Navigationsleiste*/
+/*Design des Menü-Icons*/
+.menu-icon {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: black;
+  text-align: right;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+/* Responsives Design */
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+
+  /*Formatierung der Liste der Navigationsleiste*/
+  nav ul {
+    float: right;
+    background-color: white;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+  }
+
+
+  .nav-links li {
+    margin: 10px 0;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links ul {
+    position: static;
+  }
+
+  .nav-links ul li {
+    width: 100%;
+  }
 }
 
 .footerleft {
@@ -102,6 +239,7 @@ footer {
   padding-left: 170px;
 }
 
+/*Formatierung Footer*/
 .footerright {
   grid-column: 2;
   text-align: center;
@@ -114,35 +252,23 @@ footer {
   margin-left: 130px;
 }
 
-article {
-  margin-left: 10%;
-  margin-right: 10%;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 1);
-  border-radius: 10px;
-  background-color: white;
-  margin-top: 5px;
-  margin-bottom: 15px;
-  margin-block-start: 5px;
-}
 
-#überschrift-Container {
-  font-family: 'Montserrat', sans-serif;
-  position: relative;
-  width: 100%
-}
+/*Startseite*/
 
-img {
-  width: 100%;
-  height: auto;
-  left: 0px;
-}
-
+/*Gesonderte Formatierung des Absatzes "Grundlagen"*/
 #grundlagen {
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 20px;
 }
 
+/*Generelle Formatierung der Kraftwerksbeschreibungen*/
+section {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/*Formatierung der einzelnen Themen*/
 .text_wasserkraft {
   padding-right: 20px;
   padding-left: 20px;
@@ -208,110 +334,44 @@ img {
   margin-top: -95px;
 }
 
-#text-overlay {
-  position: absolute;
-  top: 30%;
-  left: 1%;
-  color: white;
-  font-weight: bold;
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5)
-}
-
-#text-overlay2 {
-  position: absolute;
-  padding: 1%;
-  top: 40%;
-  color: white;
-  left: 2%;
-  text-shadow: 1px 1px 1px rgb(0, 0, 0);
-  background: rgba(255, 255, 255, 0.24);
-  border-radius: 5px;
-}
-
-
-
-section {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-
-/*Navigationsleiste*/
-
-.logo {
-  width: 15%;
-  float: left;
-  margin: 1%;
-}
-
-
-nav {
-  width: 100%;
-  height: 85px;
-  background-color: white;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.11);
-  position: fixed;
-  z-index: 5;
-}
-
-/*Liste der Navigationsleiste*/
-nav ul {
-  float: right;
-}
-
-/*Einträge der Liste*/
-nav ul li {
-  float: left;
-  list-style: none;
+/*Slide-In-Effekt der Bilder*/
+.image-container {
   position: relative;
 }
 
-/*Inhalt der Einträge*/
-nav ul li a {
-  font-family: Arial;
-  color: #272727;
-  font-size: 24px;
-  text-decoration: none;
-  padding: 28px;
-  display: block;
+.slide-in {
+  position: relative;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
-/*Hover Effekt für Inhalte der Navigationsleiste*/
-nav ul li a:hover {
-  background-color: rgb(179, 202, 179);
-  ;
+.slide-in.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/*Dropdown-Menü*/
-nav ul li ul {
-  display: none;
+.image-container img {
+  width: 100%;
+  height: auto;
+}
+
+.overlay-text {
   position: absolute;
-  background-color: rgb(146, 175, 146);
-  padding: 7px;
-  border-radius: 0px 0px 12px 12px;
-}
-
-/*Dropdown-Menü Anzeige nur bei Hover*/
-nav ul li:hover ul {
-  display: block;
-}
-
-/*Inhalte Dropdown Menü*/
-nav ul li ul li a {
+  top: 50%;
+  left: 20%;
+  transform: translate(-50%, -50%);
   color: white;
-  padding: 16px 20px;
-  border-radius: 10px;
-}
-
-/*Hover für Inhalte Dropdown Menü*/
-nav ul li ul li a:hover {
-  background-color: rgb(100, 134, 100);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 60px;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 1)
 }
 
 
-/*STYLING KARTEN*/
+/*Europakarte*/
 
-
+/*Formatierung Europakarte*/
 #mapeu {
   width: 100%;
   height: 85vh;
@@ -320,27 +380,7 @@ nav ul li ul li a:hover {
   border-radius: 8px;
 }
 
-/*Styling Tabelle in Sidebar*/
-
-.hover-table-row:hover {
-  background-color: rgb(212, 228, 212);
-}
-
-.header-row {
-  background-color: rgb(201, 221, 201);
-}
-
-
-
-
-#mapde {
-  width: 100%;
-  height: 85vh;
-  border: 4px solid white;
-  z-index: 1;
-  border-radius: 8px;
-}
-
+/*Sidebar mit Diagrammen*/
 #Diagramm {
   background-color: white;
   width: 100%;
@@ -351,8 +391,6 @@ nav ul li ul li a:hover {
   stroke: black;
   stroke-width: 0.5;
 }
-
-
 
 #sidebar {
   background-color: white;
@@ -365,6 +403,17 @@ nav ul li ul li a:hover {
   margin-bottom: 8px;
 }
 
+/*Grüne Tabellenleiste*/
+.header-row {
+  background-color: rgb(201, 221, 201);
+}
+
+/*Grüner Hover über Tabellenreihen*/
+.hover-table-row:hover {
+  background-color: rgb(212, 228, 212);
+}
+
+/*Button zum schließen der Sidebar*/
 #b1 {
   float: right;
   outline: none;
@@ -375,10 +424,7 @@ nav ul li ul li a:hover {
   font-size: 26px;
 }
 
-
-
-/*STYLING LEGENDE KARTE EUROPA*/
-
+/*Legende der Europakarte*/
 .info {
   padding: 6px 8px;
   background: white;
@@ -399,6 +445,24 @@ nav ul li ul li a:hover {
   float: left;
   margin-right: 8px;
   opacity: 1;
+}
+
+
+/*Deutschlandkarte*/
+
+/*Formatierung Deutschlandkarte*/
+#mapde {
+  width: 100%;
+  height: 85vh;
+  border: 4px solid white;
+  z-index: 1;
+  border-radius: 8px;
+}
+
+.custom-cluster-icon {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 /*STYLING SUCHFUNKTION KARTE DEUTSCHLAND 
@@ -435,56 +499,3 @@ nav ul li ul li a:hover {
   left: 0px;
   z-index: 1000;
 } */
-
-.custom-cluster-icon {
-  background-color: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-
-/* Verstecke das Menü-Icon standardmäßig */
-.menu-icon {
-  display: none;
-  font-size: 30px;
-  cursor: pointer;
-  color: black;
-  text-align: right;
-  margin-right: 20px;
-  margin-top: 20px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .menu-icon {
-    display: block;
-  }
-
-  nav ul {
-    float: right;
-    background-color: white;
-  }
-
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-  }
-
-  .nav-links li {
-    margin: 10px 0;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .nav-links ul {
-    position: static;
-  }
-
-  .nav-links ul li {
-    width: 100%;
-  }
-}

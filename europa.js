@@ -55,7 +55,7 @@ async function showGeojsonEU(url) {
 
 //Erstellung einer Sidebar für die Karte
 
-var sidebar = L.control.sidebar('sidebar', {
+let sidebar = L.control.sidebar('sidebar', {
     position: 'right',
     closeButton: true,
 });
@@ -109,8 +109,8 @@ function onEachFeature(feature, layer) {
     })*/
     if (feature.properties.Renewables_and_biofuels == null) {
         layer.bindPopup(
-            `<h4>${feature.properties.preferred_term}</h4>
-          Hier leider keine Daten verfügbar :(`
+            `<h5>${feature.properties.preferred_term}</h5>
+          Leider keine EUROSTAT-Daten verfügbar :(`
         )
     }
 
