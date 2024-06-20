@@ -13,6 +13,12 @@ let mapde = L.map("mapde", {zoomControl: false}).setView([Besse.lat, Besse.lng],
 // Zoom Control
 new L.Control.Zoom({position: 'bottomleft'}).addTo(mapde);
 
+// Sidebar initialisieren
+let sidebar = L.control.sidebar('sidebar', {
+    closeButton: true,
+    position: 'left'
+}).addTo(mapde);
+
 // BasemapAT Layer mit Leaflet provider plugin als startLayer Variable
 let startLayer = L.tileLayer.provider("Esri.WorldTopoMap");
 startLayer.addTo(mapde);
@@ -20,7 +26,7 @@ startLayer.addTo(mapde);
 // Maßstab
 L.control.scale({
     imperial: false,
-    position: ''
+    position: 'bottomright'
 }).addTo(mapde);
 
 // Fullscreen
@@ -28,7 +34,7 @@ L.control.fullscreen({
     position: 'bottomright'
 }).addTo(mapde);
 
-// Layerauswahl Typ Energie
+// Layerauswahl Energietyp
 let themaLayer = {
     solar: L.featureGroup(),
     windOnshore: L.markerClusterGroup({
@@ -82,6 +88,31 @@ L.control.layers({
     "Biomasse": themaLayer.bio
 
 }, { collapsed: false }).addTo(mapde);
+
+// Sidebar öffnen, wenn ein bestimmter Thema-Layer ausgewählt wird
+mapde.on('overlayadd', function(eventLayer) {
+    if (eventLayer.name === 'Solarenergie') {
+        sidebar.open('solar');
+    } else if (eventLayer.name === 'Windenergie Onshore') {
+        sidebar.open('windOnshore');
+    } else if (eventLayer.name === 'Windenergie Offshore') {
+        sidebar.open('windOffshore');
+    } else if (eventLayer.name === 'Wasserkraft') {
+        sidebar.open('water');
+    } else if (eventLayer.name === 'Biomasse') {
+        sidebar.open('bio');
+    }
+});
+
+mapde.on('overlayremove', function(eventLayer) {
+    if (eventLayer.name === 'Solarenergie' || 
+        eventLayer.name === 'Windenergie Onshore' || 
+        eventLayer.name === 'Windenergie Offshore' || 
+        eventLayer.name === 'Wasserkraft' || 
+        eventLayer.name === 'Biomasse') {
+        sidebar.close();
+    }
+});
 
 // Import GeoJson Daten Deutschland
 
@@ -137,8 +168,8 @@ async function showGeojsonwindOnshore(url) {
             //console.log(feature);
             layer.bindPopup(`
             <h4> Windenergieanlage Onshore </h4>
-            <p> System: ${feature.properties.SYS}
-            <p> Kapazität: ${feature.properties.CAP} kW
+            <br> Hersteller: ${feature.properties.SYS}
+            <br> Kapazität: ${feature.properties.CAP} kW
             `);
         }
     }).addTo(themaLayer.windOnshore)
