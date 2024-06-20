@@ -498,6 +498,15 @@ section {
   background: hsla(39, 18%, 62%, 0.8);
 }
 
+.popup-content {
+  margin-top: 10px;
+}
+
+.popup-label {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
 /*STYLING SUCHFUNKTION KARTE DEUTSCHLAND 
 
 .leaflet-container .leaflet-control-search {

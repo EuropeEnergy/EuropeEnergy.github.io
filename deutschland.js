@@ -25,12 +25,12 @@ L.control.scale({
 
 // Fullscreen
 L.control.fullscreen({
-    position: 'bottomright'
+    position: 'bottomleft'
 }).addTo(mapde);
 
 // Layerauswahl Energietyp
 let themaLayer = {
-    solar: L.featureGroup().addTo(mapde),
+    solar: L.featureGroup(),
     windOnshore: L.markerClusterGroup({
         disableClusteringAtZoom: 17,
         iconCreateFunction: function (cluster) {
@@ -75,7 +75,7 @@ L.control.layers({
     "Esri WorldTopoMap": L.tileLayer.provider("Esri.WorldTopoMap"),
     "Esri WorldImagery": L.tileLayer.provider("Esri.WorldImagery")
 }, {
-    "Solarenergie": themaLayer.solar,
+    "Solarenergie": themaLayer.solar.addTo(mapde),
     "Windenergie Onshore": themaLayer.windOnshore,
     "Windenergie Offshore": themaLayer.windOffshore,
     "Wasserkraft": themaLayer.water,
@@ -140,17 +140,19 @@ async function showGeojsonwindOnshore(url) {
         onEachFeature: function (feature, layer) {
             //console.log(feature);
             layer.bindPopup(`
-            <h5> Windanlage Onshore </h5>
-            <hr>
-            <p> Inbetriebnahme: ${feature.properties.COD}
-            <br> System: ${feature.properties.SYS}
-            <br> Installierte Leistung: ${feature.properties.CAP} kW
-            <br> Anlagenhöhe: ${feature.properties.HUB}
-            <br> Rotordurchmesser: ${feature.properties.ROD}
+                <h5>Windanlage Onshore</h5>
+                <hr>
+                <div class="popup-content">
+                    <span class="popup-label">Inbetriebnahme:</span> ${feature.properties.COD}
+                    <span class="popup-label">Hersteller:</span> ${feature.properties.SYS}
+                    <span class="popup-label">Installierte Leistung:</span> ${feature.properties.CAP} kW
+                    <span class="popup-label">Anlagenhöhe:</span> ${feature.properties.HUB} m
+                    <span class="popup-label">Rotordurchmesser:</span> ${feature.properties.ROD} m
+                </div>
             `, { className: 'PopUp_Wind' });
         }
-    }).addTo(themaLayer.windOnshore)
-};
+    }).addTo(themaLayer.windOnshore);
+}
 
 showGeojsonwindOnshore("/data/Wind-onshore_angepasst.geojson");
 
@@ -179,10 +181,10 @@ async function showGeojsonwindOffshore(url) {
             <h5> Windanlage Onshore </h5>
             <hr>
             <p> Inbetriebnahme: ${feature.properties.COD}
-            <br> System: ${feature.properties.SYS}
+            <br> Hersteller: ${feature.properties.SYS}
             <br> Installierte Leistung: ${feature.properties.CAP} kW
-            <br> Anlagenhöhe: ${feature.properties.HUB}
-            <br> Rotordurchmesser: ${feature.properties.ROD} 
+            <br> Anlagenhöhe: ${feature.properties.HUB} m
+            <br> Rotordurchmesser: ${feature.properties.ROD} m
             `, { className: 'PopUp_Wind' });
         }
     }).addTo(themaLayer.windOffshore);
@@ -213,7 +215,7 @@ async function showGeojsonwater(url) {
         onEachFeature: function (feature, layer) {
             //console.log(feature);
             layer.bindPopup(`
-            <h5> Wasserkraft </h5>
+            <h5> Wasserkraftwerk </h5>
             <hr>
             <p> Inbetriebnahme: ${feature.properties.COD}
             <br> System: ${feature.properties.SYS}
