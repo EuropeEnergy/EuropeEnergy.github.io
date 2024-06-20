@@ -28,25 +28,32 @@
 <body>
     <header>
         <nav>
-            <a href="https://github.com/EuropeEnergy/EuropeEnergy.github.io" target="_blank"> <img src="images/Logo.png"
-                    class="logo" alt="Logo"></a>
-
-            <ul>
-                <li><a href="#">Startseite</a>
+            <img src="images/Logo.png" class="logo" alt="Logo">
+            <div class="menu-icon" id="menu-icon"><i class="fa-solid fa-bars"></i></div>
+            <ul id="nav-links" class="nav-links">
+                <li><a href="/index.html">Startseite</a>
                     <ul>
-                        <li><a href="#grundlagen">Grundlagen</a></li>
+                        <li><a href="#grundlagen">Allgemein</a></li>
                         <li><a href="#wasserkraft">Wasserkraft</a></li>
                         <li><a href="#windkraft">Windkraft</a></li>
-                        <li><a href="#solarenergie">Solarenergie</a></li>
+                        <li><a href="#solarenergie">Sonnenenergie</a></li>
                         <li><a href="#biomasse">Biomasse</a></li>
                         <li><a href="#geothermie">Geothermie</a></li>
                     </ul>
                 </li>
                 <li><a href="/europa.html">Europa</a></li>
                 <li><a href="/deutschland.html">Deutschland</a></li>
-                <li><a href="/index.html">Impressum</a></li>
+                <li><a href="#">Impressum</a></li>
             </ul>
         </nav>
+        <script>
+            const navToggle = document.querySelector('.nav-toggle');
+            const navUl = document.querySelector('nav ul');
+
+            navToggle.addEventListener('click', () => {
+                navUl.classList.toggle('showing');
+            });
+        </script>
     </header>
     <main>
         <div id="Überschrift-Container">
