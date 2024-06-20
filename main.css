@@ -482,7 +482,6 @@ section {
   background: rgba(138, 162, 209, 0.8);
 }
 
-
 .PopUp_Wind .leaflet-popup-content-wrapper,
 .PopUp_Wind .leaflet-popup-tip {
   background: rgba(101, 200, 207, 0.8);
@@ -490,7 +489,7 @@ section {
 
 .PopUp_Solar .leaflet-popup-content-wrapper,
 .PopUp_Solar .leaflet-popup-tip {
-  background: rgba(101, 200, 207, 0.8);
+  background: rgba(208, 208, 123, 0.8);
 }
 
 .PopUp_Bio .leaflet-popup-content-wrapper,

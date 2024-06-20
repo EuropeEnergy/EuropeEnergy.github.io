@@ -300,8 +300,6 @@ async function showGeojsonLandkreise(url) {
     });
 
     mapde.addControl(searchControl);
-
-    //document.querySelector('.leaflet-control-search').classList.add('suchleiste-position');
 };
 
 showGeojsonLandkreise("/data/landkreise.geojson");
