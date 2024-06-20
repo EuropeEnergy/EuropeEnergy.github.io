@@ -14,9 +14,9 @@ let mapde = L.map("mapde", {zoomControl: false}).setView([Besse.lat, Besse.lng],
 new L.Control.Zoom({position: 'bottomleft'}).addTo(mapde);
 
 // Sidebar initialisieren
-let sidebar = L.control.sidebar('sidebar', {
+let sidebarDE = L.control.sidebar('sidebarDE', {
     closeButton: true,
-    position: 'left'
+    position: 'right'
 }).addTo(mapde);
 
 // BasemapAT Layer mit Leaflet provider plugin als startLayer Variable
@@ -92,15 +92,15 @@ L.control.layers({
 // Sidebar öffnen, wenn ein bestimmter Thema-Layer ausgewählt wird
 mapde.on('overlayadd', function(eventLayer) {
     if (eventLayer.name === 'Solarenergie') {
-        sidebar.open('solar');
+        sidebarDE.open('solar');
     } else if (eventLayer.name === 'Windenergie Onshore') {
-        sidebar.open('windOnshore');
+        sidebarDE.open('windOnshore');
     } else if (eventLayer.name === 'Windenergie Offshore') {
-        sidebar.open('windOffshore');
+        sidebarDE.open('windOffshore');
     } else if (eventLayer.name === 'Wasserkraft') {
-        sidebar.open('water');
+        sidebarDE.open('water');
     } else if (eventLayer.name === 'Biomasse') {
-        sidebar.open('bio');
+        sidebarDE.open('bio');
     }
 });
 
@@ -110,7 +110,7 @@ mapde.on('overlayremove', function(eventLayer) {
         eventLayer.name === 'Windenergie Offshore' || 
         eventLayer.name === 'Wasserkraft' || 
         eventLayer.name === 'Biomasse') {
-        sidebar.close();
+        sidebarDE.close();
     }
 });
 
