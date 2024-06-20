@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+
+
 // INNSBRUCK
 let ibk = {
     lat: 47.267222,
@@ -137,7 +139,7 @@ function getColor(a) {
     return a < klassen[1] ? "#c2dcc2" :
         a < klassen[2] ? "#acc3ac" :
             a < klassen[3] ? "#96a996" :
-                a < klassen[4] ? "#7e8e73" :
+                a < klassen[4] ? "#808f77" :
                     a < klassen[5] ? "#687668" :
                         a < klassen[6] ? "#4f5b4f" :
                             a > klassen[6] ? "#373f37" :
