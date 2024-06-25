@@ -13,7 +13,7 @@ let mapde = L.map("mapde", { zoomControl: false }).setView([Besse.lat, Besse.lng
 // Zoom Control
 new L.Control.Zoom({ position: 'bottomleft' }).addTo(mapde);
 
-// BasemapAT Layer mit Leaflet provider plugin als startLayer Variable
+// Esri WorldImagery Layer mit Leaflet provider plugin als startLayer Variable
 let startLayer = L.tileLayer.provider("Esri.WorldImagery");
 startLayer.addTo(mapde);
 
