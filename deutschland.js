@@ -270,6 +270,8 @@ showGeojsonbio("/data/bioenergy_angepasst.geojson");
 
 // Landkreise integrieren und Suchfunktion
 
+let highlightedLK
+
 async function showGeojsonLandkreise(url) {
     let response = await fetch(url);
     let geojson = await response.json();
@@ -303,8 +305,15 @@ async function showGeojsonLandkreise(url) {
     });
 
     searchControl.on('search:locationfound', function (e) {
-        // Stil des gefundenen Features anpassen
+        // ausgewählter Landkreis zurücksetzen
+        if (highlightedLK) {
+            landkreise.resetStyle(highlightedLK);
+        }
+        // Style des gewählten Landkreises
         e.layer.setStyle({ fillColor: 'transparent', color: '#3abfe8', opacity: 0.6, fillOpacity: 0.6 });
+
+        // Aktuell gewählten Landkreis speichern
+        highlightedLK = e.layer;
     });
 
     mapde.addControl(searchControl);
