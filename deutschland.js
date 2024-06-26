@@ -75,7 +75,7 @@ L.control.layers({
     "Esri WorldTopoMap": L.tileLayer.provider("Esri.WorldTopoMap"),
     "Esri WorldImagery": L.tileLayer.provider("Esri.WorldImagery")
 }, {
-    "Solarenergie": themaLayer.solar.addTo(mapde),
+    "Solarenergie": themaLayer.solar,
     "Windenergie Onshore": themaLayer.windOnshore,
     "Windenergie Offshore": themaLayer.windOffshore,
     "Wasserkraft": themaLayer.water,
@@ -99,20 +99,18 @@ function formatDate(dateString) {
 async function showGeojsonsolar(url) {
     let response = await fetch(url);
     let geojson = await response.json();
-    // console.log(geojson);
 
     L.geoJSON(geojson, {
         style: function (feature) {
             return {
-                color: '#D0D07B', // Außenlinienfarbe
-                fillColor: '#D0D07B', // Füllfarbe
+                color: '#D0D07B',
+                fillColor: '#D0D07B',
                 weight: 2,
                 opacity: 1,
                 fillOpacity: 1
             };
         },
         onEachFeature: function (feature, layer) {
-            // console.log(feature);
             layer.bindPopup(`
             <h5> Solarpark </h5>
             <hr>
@@ -133,7 +131,6 @@ async function showGeojsonwindOnshore(url) {
 
     let response = await fetch(url);
     let geojson = await response.json();
-    //console.log(geojson);
 
     L.geoJSON(geojson, {
         pointToLayer: function (feature, latlng) {
@@ -147,7 +144,6 @@ async function showGeojsonwindOnshore(url) {
             });
         },
         onEachFeature: function (feature, layer) {
-            //console.log(feature);
             layer.bindPopup(`
             <h5>Windanlage Onshore</h5>
             <hr>
@@ -169,7 +165,6 @@ async function showGeojsonwindOffshore(url) {
 
     let response = await fetch(url);
     let geojson = await response.json();
-    //console.log(geojson);
 
     L.geoJSON(geojson, {
         pointToLayer: function (feature, latlng) {
@@ -205,7 +200,6 @@ async function showGeojsonwater(url) {
 
     let response = await fetch(url);
     let geojson = await response.json();
-    //console.log(geojson);
 
     L.geoJSON(geojson, {
         pointToLayer: function (feature, latlng) {
@@ -220,7 +214,6 @@ async function showGeojsonwater(url) {
         },
 
         onEachFeature: function (feature, layer) {
-            //console.log(feature);
             layer.bindPopup(`
             <h5>Wasserkraftwerk</h5>
             <hr>
@@ -240,7 +233,6 @@ async function showGeojsonbio(url) {
 
     let response = await fetch(url);
     let geojson = await response.json();
-    //console.log(geojson);
 
     L.geoJSON(geojson, {
         pointToLayer: function (feature, latlng) {
@@ -254,7 +246,6 @@ async function showGeojsonbio(url) {
             });
         },
         onEachFeature: function (feature, layer) {
-            // console.log(feature);
             layer.bindPopup(`
             <h5>Biomassekraftwerk</h5>
             <hr>
