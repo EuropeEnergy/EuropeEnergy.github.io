@@ -290,7 +290,6 @@ async function showGeojsonLandkreise(url) {
         collapsed: false,
         position: 'topleft',
         moveToLocation: function (latlng, title, map) {
-            //map.fitBounds( latlng.layer.getBounds() );
             var zoom = map.getBoundsZoom(latlng.layer.getBounds());
             map.setView(latlng, zoom);
         }
