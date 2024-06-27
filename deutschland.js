@@ -75,7 +75,7 @@ L.control.layers({
     "Esri WorldTopoMap": L.tileLayer.provider("Esri.WorldTopoMap"),
     "Esri WorldImagery": L.tileLayer.provider("Esri.WorldImagery")
 }, {
-    "Solarenergie": themaLayer.solar,
+    "Solarenergie": themaLayer.solar.addTo(mapde),
     "Windenergie Onshore": themaLayer.windOnshore,
     "Windenergie Offshore": themaLayer.windOffshore,
     "Wasserkraft": themaLayer.water,
